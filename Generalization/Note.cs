@@ -14,7 +14,7 @@ namespace PianoSimulator.Generalization
 
         public VirtualKeyCode Key { get; set; } = VirtualKeyCode.SPACE;
         public int Span { get; set; } = 0;
-        public SimulatorModes Mode { get; set; } = SimulatorModes.ShortPress;
+        public SimulatorModes Mode { get; set; } = SimulatorModes.LongPress;
 
         public VirtualKeyCode[] Operation
         {

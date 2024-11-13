@@ -11,7 +11,6 @@ namespace PianoSimulator.Generalization
     {
         LongPress,
         ShortPress,
-        AsynchronousPress,
         Ignore,
     }
 
