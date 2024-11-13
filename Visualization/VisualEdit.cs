@@ -23,12 +23,12 @@ namespace PianoSimulator.Visualization
             throw new NotImplementedException();
         }
 
-        public void Play(int index = 0)
+        public void Play()
         {
             throw new NotImplementedException();
         }
 
-        public void Preview(int index = 0)
+        public void Preview()
         {
             throw new NotImplementedException();
         }

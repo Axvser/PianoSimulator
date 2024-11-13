@@ -8,8 +8,8 @@ namespace PianoSimulator.Generalization
 {
     public interface IExecutable
     {
-        void Play(int index = 0);
-        void Preview(int index = 0);
+        void Play();
+        void Preview();
         void Pause();
         void Stop();
     }

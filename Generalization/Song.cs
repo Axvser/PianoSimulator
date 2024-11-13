@@ -24,28 +24,36 @@ namespace PianoSimulator.Generalization
             IsStop = IsRunning;
         }
 
-        public async void Play(int index = 0)
+        public async void Play()
         {
             if (IsRunning || IsStop) return;
             IsRunning = true;
 
-            for (int i = index; i < Operation.Count; i++)
+            for (int i = CurrentIndex; i < Operation.Count; i++)
             {
                 if (IsStop) return;
                 await UnitExecutePaly(Operation[i]);
             }
+
+            IsRunning = false;
+            IsStop = false;
+            CurrentIndex = 0;
         }
 
-        public async void Preview(int index = 0)
+        public async void Preview()
         {
             if (IsRunning || IsStop) return;
             IsRunning = true;
 
-            for (int i = index; i < Operation.Count; i++)
+            for (int i = CurrentIndex; i < Operation.Count; i++)
             {
                 if (IsStop) return;
                 await UnitExecutePreview(Operation[i]);
             }
+
+            IsRunning = false;
+            IsStop = false;
+            CurrentIndex = 0;
         }
 
         public void Stop()

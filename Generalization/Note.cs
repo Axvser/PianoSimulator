@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PianoSimulator.BasicService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,12 @@ namespace PianoSimulator.Generalization
     public class Note : IMusicUnit
     {
         public Note() { }
+
+        public Note(char key, int span)
+        {
+            Key = key.ToVirtualKeyCode();
+            Span = span;
+        }
 
         public VirtualKeyCode Key { get; set; } = VirtualKeyCode.SPACE;
         public int Span { get; set; } = 0;
