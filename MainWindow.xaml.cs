@@ -1,4 +1,5 @@
 ﻿using MinimalisticWPF;
+using PianoSimulator.BasicService;
 using PianoSimulator.Generalization;
 using System.Text;
 using System.Windows;
@@ -18,7 +19,6 @@ namespace PianoSimulator
         public MainWindow()
         {
             InitializeComponent();
-            Test();
         }
 
         public void Test()
