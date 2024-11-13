@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MinimalisticWPF;
 using PianoSimulator.Generalization;
-using PianoSimulator.MusicBase;
+using PianoSimulator.BasicService;
 
 namespace PianoSimulator.Visualization
 {

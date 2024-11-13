@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using PianoSimulator.BasicService;
 
 namespace PianoSimulator.Generalization
 {

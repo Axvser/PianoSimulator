@@ -1,5 +1,4 @@
 ﻿using PianoSimulator.Generalization;
-using PianoSimulator.MusicBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WindowsInput.Native;
 
-namespace PianoSimulator
+namespace PianoSimulator.BasicService
 {
     public static class ConversionService
     {

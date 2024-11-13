@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PianoSimulator
+namespace PianoSimulator.BasicService
 {
     public static class FolderSet
     {

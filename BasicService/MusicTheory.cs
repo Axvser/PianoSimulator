@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PianoSimulator.MusicBase
+namespace PianoSimulator.BasicService
 {
     public class MusicTheory
     {

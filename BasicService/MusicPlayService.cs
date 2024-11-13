@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WindowsInput;
 using WindowsInput.Native;
 
-namespace PianoSimulator
+namespace PianoSimulator.BasicService
 {
     public static class MusicPlayService
     {

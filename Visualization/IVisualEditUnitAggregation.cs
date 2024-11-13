@@ -1,5 +1,5 @@
 ﻿using PianoSimulator.Generalization;
-using PianoSimulator.MusicBase;
+using PianoSimulator.BasicService;
 using System;
 using System.Collections.Generic;
 using System.Linq;

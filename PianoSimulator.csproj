@@ -18,7 +18,6 @@
 
 	<ItemGroup>
 		<Folder Include="EditVisualComponent\" />
-		<Folder Include="SimulatorBase\" />
 	</ItemGroup>
 
 </Project>
