@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PianoSimulator.Visualization
 {
-    public interface IVisualEditUnitAggregation : IMusicUnitAggregation
+    public interface IVisualEditUnitAggregation : IExecutable
     {
         MusicTheory MusicTheory { get; set; }
         List<IVisualEditUnit> VisualEditUnit { get; }

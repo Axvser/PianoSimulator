@@ -13,15 +13,7 @@ namespace PianoSimulator.Visualization
     {
         public Section() { }
 
-        private List<Track> _tracks = [];
-        public List<Track> Tracks
-        {
-            get => _tracks;
-            set
-            {
-                _tracks = value;
-            }
-        }
+        public List<Track> Tracks { get; set; } = [];
 
         public int Paragraph { get; set; } = -1;
         public int AudioTrack { get; set; } = -1;

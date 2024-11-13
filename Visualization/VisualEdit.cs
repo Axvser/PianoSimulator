@@ -14,10 +14,7 @@ namespace PianoSimulator.Visualization
         public VisualEdit() { }
 
         public List<Section> Sections { get; set; } = [];
-              
-        public string Name { get; set; } = string.Empty;
-        public List<IMusicUnit> Operation { get; set; }
-
+             
         public MusicTheory MusicTheory { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<IVisualEditUnit> VisualEditUnit => throw new NotImplementedException();
 

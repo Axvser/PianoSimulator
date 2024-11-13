@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PianoSimulator.Generalization
 {
-    public interface IMusicUnitAggregation : IExecutable
+    public interface IMusicUnitAggregation
     {
         string Name { get; set; }
         List<IMusicUnit> Operation { get; set; }

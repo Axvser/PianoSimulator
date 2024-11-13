@@ -9,7 +9,7 @@ using PianoSimulator.BasicService;
 
 namespace PianoSimulator.Generalization
 {
-    public class Song : IMusicUnitAggregation
+    public class Song : IMusicUnitAggregation, IExecutable
     {
         public Song() { }
         public string Name { get; set; } = string.Empty;
