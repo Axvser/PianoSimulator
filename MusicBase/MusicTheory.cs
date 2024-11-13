@@ -98,7 +98,6 @@ namespace PianoSimulator.MusicBase
         public int SixteenthNote { get { return _basicvalue / 16; } }
         public int ThirtySecondNote { get { return _basicvalue / 32; } }
         public int SixtyFourthNote { get { return _basicvalue / 64; } }
-        public int OneHundredTwentyEighthNote { get { return _basicvalue / 128; } }
         public int FastNote { get; set; } = 100;
 
         private void ReCalculateSets()

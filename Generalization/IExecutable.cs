@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace PianoSimulator.Generalization
 {
-    /// <summary>
-    /// 可执行的乐曲对象
-    /// </summary>
     public interface IExecutable
     {
         void Play(int index = 0);

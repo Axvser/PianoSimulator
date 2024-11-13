@@ -32,8 +32,12 @@ namespace PianoSimulator.Visualization
         {
             if (value > 0)
             {
-                Note.Duration[0] = value;
+                Note.Span = value;
             }
+        }
+        public void NewMode(SimulatorModes mode)
+        {
+            Note.Mode = mode;
         }
     }
 }

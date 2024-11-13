@@ -7,9 +7,6 @@ using WindowsInput.Native;
 
 namespace PianoSimulator.Generalization
 {
-    /// <summary>
-    /// 按压方式
-    /// </summary>
     public enum SimulatorModes
     {
         LongPress,
@@ -18,13 +15,10 @@ namespace PianoSimulator.Generalization
         Ignore,
     }
 
-    /// <summary>
-    /// 时刻对应音符信息
-    /// </summary>
     public interface IMusicUnit
     {
-        VirtualKeyCode[] Operation { get; }
-        int[] Duration { get; }
-        SimulatorModes[] SimulatorMode { get; }
+        VirtualKeyCode[] Operation { get; set; }
+        int[] Duration { get; set; }
+        SimulatorModes[] SimulatorMode { get; set; }
     }
 }
