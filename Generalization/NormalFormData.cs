@@ -11,7 +11,7 @@ namespace PianoSimulator.Generalization
     public class NormalFormData
     {
         public NormalFormData() { }
-        public NormalFormData(Song song)
+        public NormalFormData(IMusicUnitAggregation song)
         {
             Name = song.Name;
             Operations = song.Operation.Select(x => x.Operation).ToList();

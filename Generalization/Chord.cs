@@ -12,18 +12,17 @@ namespace PianoSimulator.Generalization
     {
         public Chord() { }
 
-        public Chord(string keys, int span)
+        public Chord(string keys, int span, SimulatorModes simulatorModes = SimulatorModes.ShortPress)
         {
-            Notes.Clear();
             foreach (var key in keys)
             {
                 if (key == '(' || key == ')') continue;
-                var note = new Note(key, span);
+                var note = new Note(key, span, simulatorModes);
                 Notes.Add(note);
             }
         }
 
-        public List<Note> Notes { get; set; } = [new Note()];
+        public List<Note> Notes { get; set; } = [];
 
         public VirtualKeyCode[] Operation
         {

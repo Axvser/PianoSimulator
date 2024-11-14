@@ -10,8 +10,7 @@ namespace PianoSimulator.Generalization
     public enum SimulatorModes
     {
         LongPress,
-        ShortPress,
-        Ignore,
+        ShortPress
     }
 
     public interface IMusicUnit

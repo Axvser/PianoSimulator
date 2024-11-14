@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace PianoSimulator.BasicService
 {
@@ -10,9 +12,17 @@ namespace PianoSimulator.BasicService
     {
         public MusicTheory() { }
 
+        [XmlIgnore]
+        [JsonIgnore]
         private int _speed = 80;
+        [XmlIgnore]
+        [JsonIgnore]
         private int _leftnum = 4;
+        [XmlIgnore]
+        [JsonIgnore]
         private int _rightnum = 4;
+        [XmlIgnore]
+        [JsonIgnore]
         private int _basicvalue = 3000;
 
         /// <summary>
@@ -91,12 +101,26 @@ namespace PianoSimulator.BasicService
             }
         }
 
+        [XmlIgnore]
+        [JsonIgnore]
         public int WholeNote { get { return _basicvalue; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int HalfNote { get { return _basicvalue / 2; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int QuarterNote { get { return _basicvalue / 4; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int EighthNote { get { return _basicvalue / 8; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int SixteenthNote { get { return _basicvalue / 16; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int ThirtySecondNote { get { return _basicvalue / 32; } }
+        [XmlIgnore]
+        [JsonIgnore]
         public int SixtyFourthNote { get { return _basicvalue / 64; } }
         public int FastNote { get; set; } = 100;
 
