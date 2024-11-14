@@ -11,7 +11,8 @@
         Background="#1e1e1e"
         Height="540" 
         Width="960"
-        Name="Main">
+        Name="Main"
+        ResizeMode="NoResize">
     <Viewbox>
         <Grid Width="{Binding ElementName=Main,Path=Width}"
               Height="{Binding ElementName=Main,Path=Height}">

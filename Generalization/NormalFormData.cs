@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using WindowsInput.Native;
 
 namespace PianoSimulator.Generalization
@@ -94,7 +96,7 @@ namespace PianoSimulator.Generalization
                     {
                         var key = Operations[i][0];
                         var span = Durations[i][0];
-                        song += key.ToString() + " " + span.ToString() + " ";
+                        song += key.ToChar() + " " + span.ToString() + " ";
                     }
                     else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length && Operations[i].Length == SimulatorModes[i].Length)
                     {
@@ -102,7 +104,7 @@ namespace PianoSimulator.Generalization
                         var span = 0;
                         for (int j = 0; j < Operations[i].Length; j++)
                         {
-                            keys += Operations[i][j].ToString();
+                            keys += Operations[i][j].ToChar();
                             span = Durations[i][j];
                         }
                         song += keys + " " + span.ToString() + " ";
