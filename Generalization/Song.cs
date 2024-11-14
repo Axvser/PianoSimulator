@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Serialization;
 using PianoSimulator.BasicService;
 
@@ -33,6 +34,7 @@ namespace PianoSimulator.Generalization
             {
                 if (IsStop) return;
                 await UnitExecutePaly(Operation[i]);
+                CurrentIndex++;
             }
 
             IsRunning = false;
@@ -49,6 +51,7 @@ namespace PianoSimulator.Generalization
             {
                 if (IsStop) return;
                 await UnitExecutePreview(Operation[i]);
+                CurrentIndex++;
             }
 
             IsRunning = false;
@@ -62,7 +65,12 @@ namespace PianoSimulator.Generalization
             CurrentIndex = 0;
         }
 
-        private async Task UnitExecutePaly(IMusicUnit value)
+        public NormalFormData ToNormalFormData()
+        {
+            return new NormalFormData(this);
+        }
+
+        private static async Task UnitExecutePaly(IMusicUnit value)
         {
             MusicPlayService.Play(value.Operation);
             foreach (var item in GetWaitingSequence(value))
@@ -71,7 +79,7 @@ namespace PianoSimulator.Generalization
                 MusicPlayService.ReleasePlay(value.Operation[item.Item2]);
             }
         }
-        private async Task UnitExecutePreview(IMusicUnit value)
+        private static async Task UnitExecutePreview(IMusicUnit value)
         {
             MusicPlayService.Preview(value.Operation);
             foreach (var item in GetWaitingSequence(value))

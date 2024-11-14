@@ -35,9 +35,16 @@ namespace PianoSimulator
 
         public void TestA(object sender, HotKeyEventArgs e)
         {
-            var file = StringService.SelectTxtFiles().First();
-            var song = StringService.NKS_ParseToNormalFormData(file).ToSong();
+            //var datas = StringService.SelectTxtFiles();
+            //foreach (var data in datas)
+            //{
+            //    var result = StringService.NKS_ParseToNormalFormData(data);
+            //    result.Name.CreatJsonFile(FolderSet.Generalization, result);
+            //}
+            var data = StringService.SelectJsonFiles().First();           
+            var song = data.JsonParse<NormalFormData>().ToSong();
             Song = song;
+            Song.Play();
         }
 
         public void TestB(object sender, HotKeyEventArgs e)

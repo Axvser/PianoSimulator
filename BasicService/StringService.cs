@@ -81,7 +81,25 @@ namespace PianoSimulator.BasicService
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "Text files (*.txt)|*.txt";
+            openFileDialog.Filter = "选择文件（多选）|*.txt";
+            openFileDialog.Multiselect = true;
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.CheckPathExists = true;
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                return openFileDialog.FileNames.Select(x => File.ReadAllText(x)).ToArray();
+            }
+            return [];
+        }
+        /// <summary>
+        /// 读取选中Json文件的文本内容
+        /// </summary>
+        public static string[] SelectJsonFiles()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = @"C:\";
+            openFileDialog.Filter = "选择文件（多选）|*.json";
             openFileDialog.Multiselect = true;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
