@@ -14,10 +14,21 @@
         Name="Main"
         ResizeMode="NoResize">
     <Viewbox>
-        <Grid Width="{Binding ElementName=Main,Path=Width}"
-              Height="{Binding ElementName=Main,Path=Height}">
+        <Grid Height="540" Width="960">
             <mn:MTopBar VerticalAlignment="Top" Title="PianoSimulator"/>
-
+            <Border x:Name="B1" Margin="0,80,0,455" Width="150" HorizontalAlignment="Left" Background="Cyan"/>
+            <Border x:Name="B2" Margin="150,80,0,455" Width="200" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
+            <Border x:Name="B3" Margin="350,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
+            <Border x:Name="B4" Margin="500,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
+            <Border x:Name="B5" Margin="650,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
+            <Border x:Name="B6" Margin="800,80,0,455" Width="160" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
+            <mn:MButton Text="配置" Click="Config_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="0,35,0,0" WiseHeight="40" WiseWidth="150"/>
+            <mn:MButton Text="按键谱" Click="TxtEdit_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="150,35,0,0" WiseHeight="40" WiseWidth="200"/>
+            <mn:MButton Text="简谱" Click="VisualEdit_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="350,35,0,0" WiseHeight="40" WiseWidth="150"/>
+            <mn:MButton Text="浮窗" Click="Cover_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="500,35,0,0" WiseHeight="40" WiseWidth="150"/>
+            <mn:MButton Text="编辑器" Click="IDESet_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="650,35,0,0" WiseHeight="40" WiseWidth="150"/>
+            <mn:MButton Text="帮助" Click="Help_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="800,35,0,0" WiseHeight="40" WiseWidth="160"/>
+            <mn:MNavigateBox x:Name="NowPage" Width="960" Height="450" VerticalAlignment="Bottom" Grid.RowSpan="2"/>
         </Grid>
     </Viewbox>
 </Window>

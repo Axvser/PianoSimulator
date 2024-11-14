@@ -16,8 +16,4 @@
 		<PackageReference Include="MinimalisticWPF" Version="1.9.1" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="EditVisualComponent\" />
-	</ItemGroup>
-
 </Project>

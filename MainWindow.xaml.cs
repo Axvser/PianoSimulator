@@ -1,6 +1,7 @@
-﻿using FastHotKeyForWPF;
-using MinimalisticWPF;
+﻿global using FastHotKeyForWPF;
+global using MinimalisticWPF;
 using PianoSimulator.BasicService;
+using PianoSimulator.EditPage;
 using PianoSimulator.Generalization;
 using System.Text;
 using System.Windows;
@@ -24,6 +25,21 @@ namespace PianoSimulator
 
         private IExecutable _actuator = new Song();
         private ExecutionModes _executionModes = ExecutionModes.Keyboard;
+        private int _pagetype = 1;
+        private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
+            .SetProperty(x => x.Background, Brushes.Gray)
+            .SetProperty(x => x.Opacity, 0.6)
+            .SetParams((x) =>
+            {
+                x.Duration = 0.2;
+            });
+        private static TransitionBoard<Border> _selected = Transition.CreateBoardFromType<Border>()
+            .SetProperty(x => x.Background, Brushes.Cyan)
+            .SetProperty(x => x.Opacity, 1)
+            .SetParams((x) =>
+            {
+                x.Duration = 0.5;
+            });
 
         public IExecutable Actuator//执行器
         {
@@ -43,6 +59,64 @@ namespace PianoSimulator
                 _executionModes = value;
             }
         }
+        public int PageType//当前页面标号
+        {
+            get => _pagetype;
+            set
+            {
+                if (value != _pagetype)
+                {
+                    PageLightChange(_pagetype, value);
+                    _pagetype = value;
+                }
+            }
+        }
+
+        private void PageLightChange(int last, int next)
+        {
+            switch (last)
+            {
+                case 1:
+                    B1.BeginTransition(_noselected);
+                    break;
+                case 2:
+                    B2.BeginTransition(_noselected);
+                    break;
+                case 3:
+                    B3.BeginTransition(_noselected);
+                    break;
+                case 4:
+                    B4.BeginTransition(_noselected);
+                    break;
+                case 5:
+                    B5.BeginTransition(_noselected);
+                    break;
+                case 6:
+                    B6.BeginTransition(_noselected);
+                    break;
+            }
+            switch (next)
+            {
+                case 1:
+                    B1.BeginTransition(_selected);
+                    break;
+                case 2:
+                    B2.BeginTransition(_selected);
+                    break;
+                case 3:
+                    B3.BeginTransition(_selected);
+                    break;
+                case 4:
+                    B4.BeginTransition(_selected);
+                    break;
+                case 5:
+                    B5.BeginTransition(_selected);
+                    break;
+                case 6:
+                    B6.BeginTransition(_selected);
+                    break;
+            }
+        }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
@@ -51,13 +125,44 @@ namespace PianoSimulator
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, (sender, e) => { if (ExecuteMode == 0) Actuator.Play(); else Actuator.Preview(); });
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, (sender, e) => { Actuator.Pause(); });
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, (sender, e) => { Actuator.Stop(); });
+            NowPage.Navigate(typeof(MusicConfiguration));
         }
-
         protected override void OnClosed(EventArgs e)
         {
             GlobalHotKey.Destroy();
             Transition.Dispose();
             base.OnClosed(e);
+        }
+
+        private void Config_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(MusicConfiguration));
+            PageType = 1;
+        }
+        private void TxtEdit_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(TxtEdit));
+            PageType = 2;
+        }
+        private void VisualEdit_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(VisualEdit));
+            PageType = 3;
+        }
+        private void Cover_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(GameCover));
+            PageType = 4;
+        }
+        private void IDESet_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(IDESet));
+            PageType = 5;
+        }
+        private void Help_Click(object sender, MouseButtonEventArgs e)
+        {
+            NowPage.Navigate(typeof(UserHelp));
+            PageType = 6;
         }
     }
 }
