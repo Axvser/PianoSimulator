@@ -22,37 +22,35 @@ namespace PianoSimulator
             InitializeComponent();
         }
 
-        public Song Song { get; set; } = new Song();
+        private IExecutable _actuator = new Song();
+        private ExecutionModes _executionModes = ExecutionModes.Keyboard;
+
+        public IExecutable Actuator//执行器
+        {
+            get => _actuator;
+            set
+            {
+                _actuator.Pause();
+                _actuator = value;
+            }
+        }
+        public ExecutionModes ExecuteMode//执行模式
+        {
+            get => _executionModes;
+            set
+            {
+                Actuator.Pause();
+                _executionModes = value;
+            }
+        }
 
         protected override void OnSourceInitialized(EventArgs e)
         {
             base.OnSourceInitialized(e);
             GlobalHotKey.Awake();
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, TestA);
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, TestB);
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, TestC);
-        }
-
-        public void TestA(object sender, HotKeyEventArgs e)
-        {
-            //var datas = StringService.SelectTxtFiles();
-            //foreach (var data in datas)
-            //{
-            //    var result = StringService.NKS_ParseToNormalFormData(data);
-            //    result.Name.CreatJsonFile(FolderSet.Generalization, result);
-            //}
-            var data = StringService.SelectJsonFiles().First();
-            var song = data.JsonParse<NormalFormData>().ToNKS();
-            MessageBox.Show(song);
-        }
-
-        public void TestB(object sender, HotKeyEventArgs e)
-        {
-            Song.Play();
-        }
-        public void TestC(object sender, HotKeyEventArgs e)
-        {
-            Song.Stop();
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, (sender, e) => { if (ExecuteMode == 0) Actuator.Play(); else Actuator.Preview(); });
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, (sender, e) => { Actuator.Pause(); });
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, (sender, e) => { Actuator.Stop(); });
         }
     }
 }
