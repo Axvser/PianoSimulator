@@ -81,7 +81,7 @@ namespace PianoSimulator.BasicService
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "选择文件（多选）|*.txt";
+            openFileDialog.Filter = "选择文件（可多选）|*.txt";
             openFileDialog.Multiselect = true;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
@@ -99,7 +99,7 @@ namespace PianoSimulator.BasicService
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "选择文件（多选）|*.json";
+            openFileDialog.Filter = "选择文件（可多选）|*.json";
             openFileDialog.Multiselect = true;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;

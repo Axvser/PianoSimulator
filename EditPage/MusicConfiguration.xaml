@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditPage"
-             mc:Ignorable="d" 
-             Width="960" 
+             mc:Ignorable="d"
+             Width="960"
              Height="450">
     <Grid>
-            
+        <Border VerticalAlignment="Top" Height="30" BorderBrush="White" BorderThickness="3,0,0,0">
+            <TextBlock Text="SpeedConfig" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
     </Grid>
 </UserControl>

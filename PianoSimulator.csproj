@@ -3,6 +3,7 @@
 	<PropertyGroup>
 		<NoWarn>1701</NoWarn>
 		<NoWarn>0052</NoWarn>
+		<NoWarn>8619</NoWarn>
 		<OutputType>WinExe</OutputType>
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<Nullable>enable</Nullable>

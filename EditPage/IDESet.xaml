@@ -9,9 +9,12 @@
              Width="960" 
              Height="450">
     <Grid>
-        <mn:MButton Text="解析" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="3,0,0,0" Margin="0,0,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="输出" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="3,0,0,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="热键" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="3,0,0,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="配置" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="3,0,0,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
+        <Border VerticalAlignment="Top" Height="30" BorderBrush="White" BorderThickness="3,0,0,0">
+            <TextBlock Text="Editor" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
+        <mn:MButton Text="解析" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,0,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="输出" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="热键" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="配置" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
     </Grid>
 </UserControl>

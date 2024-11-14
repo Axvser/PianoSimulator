@@ -8,6 +8,8 @@
              Width="960" 
              Height="450">
     <Grid>
-            
+        <Border VerticalAlignment="Top" Height="30" BorderBrush="White" BorderThickness="3,0,0,0">
+            <TextBlock Text="GameInside" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
     </Grid>
 </UserControl>

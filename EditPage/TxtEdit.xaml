@@ -4,10 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditPage"
+             xmlns:mn="clr-namespace:MinimalisticWPF;assembly=MinimalisticWPF"
              mc:Ignorable="d" 
              Width="960" 
              Height="450">
     <Grid>
-            
+        <Border VerticalAlignment="Top" Height="30" BorderBrush="White" BorderThickness="3,0,0,0">
+            <TextBlock Text="TxtEdit" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
+        <mn:MButton Text=". json" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,0,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text=". txt" Click="Txt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="NKS式" Click="NKS_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="Keys式" Click="Keys_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
     </Grid>
 </UserControl>
