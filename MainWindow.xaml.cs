@@ -52,5 +52,12 @@ namespace PianoSimulator
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, (sender, e) => { Actuator.Pause(); });
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, (sender, e) => { Actuator.Stop(); });
         }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            GlobalHotKey.Destroy();
+            Transition.Dispose();
+            base.OnClosed(e);
+        }
     }
 }
