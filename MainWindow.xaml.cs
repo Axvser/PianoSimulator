@@ -20,6 +20,7 @@ namespace PianoSimulator
     {
         public MainWindow()
         {
+            Instance = this;
             InitializeComponent();
         }
 
@@ -41,6 +42,7 @@ namespace PianoSimulator
                 x.Duration = 0.5;
             });
 
+        public static MainWindow? Instance { get; private set; }
         public IExecutable Actuator//执行器
         {
             get => _actuator;
