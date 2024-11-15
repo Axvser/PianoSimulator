@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 
 namespace PianoSimulator.EditVisualComponent
 {
-    public partial class TxtSingleVisual : StackPanel
+    public partial class TxtSingleVisual : StackPanel, IExecutable
     {
         public TxtSingleVisual()
         {
@@ -49,6 +49,29 @@ namespace PianoSimulator.EditVisualComponent
         }
         public static TxtSingleVisual? Selected { get; private set; }
 
+        public void Play()
+        {
+
+        }
+        public void Preview()
+        {
+
+        }
+        public void Pause()
+        {
+
+        }
+        public void Stop()
+        {
+
+        }
+
+
+        public void RenderAsLast()
+        {
+            Edge.BorderBrush = Brushes.Wheat;
+            Edge.BorderThickness = new Thickness(0, 0, 3, 0);
+        }
         private void RenderKeys()
         {
             Keys.Children.Clear();

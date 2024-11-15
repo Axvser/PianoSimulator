@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 
 namespace PianoSimulator.EditVisualComponent
 {
-    public partial class TxtTrackVisual : StackPanel
+    public partial class TxtTrackVisual : StackPanel, IExecutable
     {
         public TxtTrackVisual()
         {
@@ -34,13 +34,34 @@ namespace PianoSimulator.EditVisualComponent
             }
         }
 
+        public void Play()
+        {
+
+        }
+        public void Preview()
+        {
+
+        }
+        public void Pause()
+        {
+
+        }
+        public void Stop()
+        {
+
+        }
+
         private void RenderTrack()
         {
             Children.Clear();
-            foreach (var group in Value)
+            for (int i = 0; i < Value.Count; i++)
             {
                 var tst = new TxtSingleVisual();
-                tst.Value = group;
+                tst.Value = Value[i];
+                if (i == Value.Count - 1)
+                {
+                    tst.RenderAsLast();
+                }
                 Children.Add(tst);
             }
         }

@@ -39,7 +39,7 @@
         <mn:MButton Text="新建" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="读取" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="保存" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="配置" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="刷新" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
         <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ScrollViewer Margin="0,0,-20,0">
                 <StackPanel x:Name="Options">
@@ -48,7 +48,7 @@
             </ScrollViewer>
         </Border>
         <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" Margin="0,170,0,0" HorizontalAlignment="Left" Width="810">
-            <ScrollViewer Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="Table" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
                 <ScrollViewer.Template>
                     <ControlTemplate TargetType="ScrollViewer">
                         <Grid>

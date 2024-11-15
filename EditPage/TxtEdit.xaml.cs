@@ -19,12 +19,15 @@ using System.Windows.Shapes;
 namespace PianoSimulator.EditPage
 {
     [Navigable]
-    public partial class TxtEdit : UserControl
+    public partial class TxtEdit : UserControl, IExecutable
     {
         public TxtEdit()
         {
             InitializeComponent();
+            Instance = this;
         }
+
+        public static TxtEdit? Instance { get; set; }
 
         private NormalFormData[] _normalformdatas = [];
         private TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
@@ -64,6 +67,23 @@ namespace PianoSimulator.EditPage
             }
         }
 
+        public void Play()
+        {
+
+        }
+        public void Preview()
+        {
+
+        }
+        public void Pause()
+        {
+
+        }
+        public void Stop()
+        {
+
+        }
+
         private void RenderSelectList()
         {
             Options.Children.Clear();
@@ -71,7 +91,7 @@ namespace PianoSimulator.EditPage
             foreach (var data in _normalformdatas)
             {
                 var option = new MButton();
-                option.Text = $"[{count}]  "+data.Name;
+                option.Text = $"[{count}]  " + data.Name;
                 option.EdgeThickness = new Thickness(0, 0, 2, 0);
                 option.WiseWidth = 810;
                 option.WiseHeight = 40;
@@ -115,6 +135,19 @@ namespace PianoSimulator.EditPage
                 var ttk = new TxtTrackVisual();
                 ttk.Value = group;
                 Editors.Children.Add(ttk);
+            }
+        }
+
+        public static void Scroll(Thickness value)
+        {
+            if (Instance != null)
+            {
+                var horizontal = Instance.Table.HorizontalOffset;
+                var vertical = Instance.Table.VerticalOffset;
+                var newHorizontal = horizontal - value.Left + value.Right;
+                var newVertical = vertical - value.Top + value.Bottom;
+                Instance.Table.ScrollToHorizontalOffset(newHorizontal);
+                Instance.Table.ScrollToVerticalOffset(newVertical);
             }
         }
 

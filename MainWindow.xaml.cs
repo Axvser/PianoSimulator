@@ -29,6 +29,7 @@ namespace PianoSimulator
         private ExecutionModes _executionModes = ExecutionModes.Keyboard;
         private int _pagetype = 1;
         private int _edittime = 10;
+        private int _scrolldelta = 30;
         private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
             .SetProperty(x => x.Background, Brushes.Gray)
             .SetProperty(x => x.Opacity, 0.6)
@@ -86,6 +87,15 @@ namespace PianoSimulator
                 }
             }
         }
+        public int ScrollDelta//按键滚动
+        {
+            get => _scrolldelta;
+            set
+            {
+                _scrolldelta = Math.Abs(value);
+            }
+        }
+
 
         private void PageLightChange(int last, int next)
         {
@@ -137,9 +147,12 @@ namespace PianoSimulator
         {
             base.OnSourceInitialized(e);
             GlobalHotKey.Awake();
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, (sender, e) => { if (ExecuteMode == 0) Actuator.Play(); else Actuator.Preview(); });
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, (sender, e) => { Actuator.Pause(); });
-            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, (sender, e) => { Actuator.Stop(); });
+
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.W, UpScroll);
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.S, DownScroll);
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.A, LeftScroll);
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.D, RightScroll);
+
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.X, AddTxtEditorSpan);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.Z, ReduceTxtEditorSpan);
             NowPage.Navigate(typeof(MusicConfiguration));
@@ -153,20 +166,21 @@ namespace PianoSimulator
 
         private void RightScroll(object sender, HotKeyEventArgs e)
         {
-
+            TxtEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
         }
         private void LeftScroll(object sender, HotKeyEventArgs e)
         {
-
+            TxtEdit.Scroll(new Thickness(ScrollDelta, 0, 0, 0));
         }
-        private void TopScroll(object sender, HotKeyEventArgs e)
+        private void UpScroll(object sender, HotKeyEventArgs e)
         {
-
+            TxtEdit.Scroll(new Thickness(0, ScrollDelta, 0, 0));
         }
-        private void BottomScroll(object sender, HotKeyEventArgs e)
+        private void DownScroll(object sender, HotKeyEventArgs e)
         {
-
+            TxtEdit.Scroll(new Thickness(0, 0, 0, ScrollDelta));
         }
+
         private void AddTxtEditorSpan(object sender, HotKeyEventArgs e)
         {
             if (TxtSingleVisual.Selected != null)

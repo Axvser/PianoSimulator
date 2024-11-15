@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PianoSimulator.Generalization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,28 @@ namespace PianoSimulator.EditVisualComponent
     /// <summary>
     /// VisualEditBox.xaml 的交互逻辑
     /// </summary>
-    public partial class VisualEditBox : UserControl
+    public partial class VisualEditBox : UserControl, IExecutable
     {
         public VisualEditBox()
         {
             InitializeComponent();
+        }
+
+        public void Play()
+        {
+
+        }
+        public void Preview()
+        {
+
+        }
+        public void Pause()
+        {
+
+        }
+        public void Stop()
+        {
+
         }
     }
 }
