@@ -2,6 +2,7 @@
 global using MinimalisticWPF;
 using PianoSimulator.BasicService;
 using PianoSimulator.EditPage;
+using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
 using System.Text;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace PianoSimulator
         private IExecutable _actuator = new Song();
         private ExecutionModes _executionModes = ExecutionModes.Keyboard;
         private int _pagetype = 1;
+        private int _edittime = 10;
         private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
             .SetProperty(x => x.Background, Brushes.Gray)
             .SetProperty(x => x.Opacity, 0.6)
@@ -70,6 +72,17 @@ namespace PianoSimulator
                 {
                     PageLightChange(_pagetype, value);
                     _pagetype = value;
+                }
+            }
+        }
+        public int EditTime//时长缩进
+        {
+            get => _edittime;
+            set
+            {
+                if (value > 0)
+                {
+                    _edittime = value;
                 }
             }
         }
@@ -127,6 +140,8 @@ namespace PianoSimulator
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, (sender, e) => { if (ExecuteMode == 0) Actuator.Play(); else Actuator.Preview(); });
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, (sender, e) => { Actuator.Pause(); });
             GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, (sender, e) => { Actuator.Stop(); });
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.X, AddTxtEditorSpan);
+            GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.Z, ReduceTxtEditorSpan);
             NowPage.Navigate(typeof(MusicConfiguration));
         }
         protected override void OnClosed(EventArgs e)
@@ -134,6 +149,51 @@ namespace PianoSimulator
             GlobalHotKey.Destroy();
             Transition.Dispose();
             base.OnClosed(e);
+        }
+
+        private void RightScroll(object sender, HotKeyEventArgs e)
+        {
+
+        }
+        private void LeftScroll(object sender, HotKeyEventArgs e)
+        {
+
+        }
+        private void TopScroll(object sender, HotKeyEventArgs e)
+        {
+
+        }
+        private void BottomScroll(object sender, HotKeyEventArgs e)
+        {
+
+        }
+        private void AddTxtEditorSpan(object sender, HotKeyEventArgs e)
+        {
+            if (TxtSingleVisual.Selected != null)
+            {
+                TxtSingleVisual.Selected.Width += EditTime;
+                var index = TxtSingleVisual.Selected.Value.Duration.Length - 1;
+                if (index >= 0)
+                {
+                    TxtSingleVisual.Selected.Value.Duration[index] += EditTime;
+                }
+            }
+        }
+        private void ReduceTxtEditorSpan(object sender, HotKeyEventArgs e)
+        {
+            if (TxtSingleVisual.Selected != null)
+            {
+                var index = TxtSingleVisual.Selected.Value.Duration.Length - 1;
+                if (index >= 0)
+                {
+                    var newTime = TxtSingleVisual.Selected.Value.Duration[index] - EditTime;
+                    if (newTime > 50)
+                    {
+                        TxtSingleVisual.Selected.Value.Duration[index] = newTime;
+                        TxtSingleVisual.Selected.Width -= EditTime;
+                    }
+                }
+            }
         }
 
         private void Config_Click(object sender, MouseButtonEventArgs e)

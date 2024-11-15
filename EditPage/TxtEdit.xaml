@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditPage"
+             xmlns:cp="clr-namespace:PianoSimulator.EditVisualComponent"
              xmlns:mn="clr-namespace:MinimalisticWPF;assembly=MinimalisticWPF"
              mc:Ignorable="d" 
              Width="960" 
@@ -11,6 +12,12 @@
     <Grid>
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,0,0">
             <TextBlock Text="TxtEdit" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Right" BorderThickness="0,0,3,0">
+            <TextBlock Text="数据源 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,25,0"/>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,240,0,0">
+            <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,25,0"/>
         </Border>
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,0,0" Margin="0,40,0,0">
             <TextBlock Text="曲名" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
@@ -25,21 +32,33 @@
                 </ControlTemplate>
             </TextBox.Template>
         </TextBox>
-        <mn:MButton Text=". json" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,0,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text=". txt" Click="Txt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="NKS式" Click="NKS_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="Keys式" Click="Keys_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
-        <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0,0,0" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+        <mn:MButton Text=". json" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text=". txt" Click="Txt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="NKS式" Click="NKS_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="Keys式" Click="Keys_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,160,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="新建" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="读取" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="保存" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="配置" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
+        <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ScrollViewer Margin="0,0,-20,0">
                 <StackPanel x:Name="Options">
 
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <Border ClipToBounds="True" BorderBrush="White" BorderThickness="3,0,0,0" Margin="0,170,0,0" HorizontalAlignment="Left" Width="810">
-            <ScrollViewer Margin="0,0,-20,0">
+        <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" Margin="0,170,0,0" HorizontalAlignment="Left" Width="810">
+            <ScrollViewer Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer.Template>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Grid>
+                            <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </ScrollViewer.Template>
                 <StackPanel x:Name="Editors">
-
+                    <cp:TxtSingleVisual Width="810"/>
+                    <cp:TxtSingleVisual Width="810"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>

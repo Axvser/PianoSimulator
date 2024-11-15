@@ -1,4 +1,5 @@
 ﻿using PianoSimulator.BasicService;
+using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace PianoSimulator.EditPage
         private NormalFormData[] _normalformdatas = [];
         private TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
             .SetProperty(x => x.BorderBrush, Brushes.Wheat)
-            .SetProperty(x=>x.Foreground,Brushes.Lime)
+            .SetProperty(x => x.Foreground, Brushes.Lime)
             .SetParams((x) =>
             {
                 x.Duration = 0.2;
@@ -41,22 +42,21 @@ namespace PianoSimulator.EditPage
                 x.Duration = 0.2;
             });
 
-        public NormalFormData[] NormalFormDatas
+        public NormalFormData[] Value
         {
             get => _normalformdatas;
             set
             {
                 _normalformdatas = value;
-                RenderList();
+                RenderSelectList();
             }
         }
-
         public NormalFormData? this[string name]
         {
-            get => NormalFormDatas.FirstOrDefault(x => x.Name == name);
+            get => Value.FirstOrDefault(x => x.Name == name);
             set
             {
-                var target = NormalFormDatas.FirstOrDefault(x => x.Name == name);
+                var target = Value.FirstOrDefault(x => x.Name == name);
                 if (target != null)
                 {
                     target = value;
@@ -64,13 +64,14 @@ namespace PianoSimulator.EditPage
             }
         }
 
-        private void RenderList()
+        private void RenderSelectList()
         {
             Options.Children.Clear();
+            var count = 1;
             foreach (var data in _normalformdatas)
             {
                 var option = new MButton();
-                option.Text = data.Name;
+                option.Text = $"[{count}]  "+data.Name;
                 option.EdgeThickness = new Thickness(0, 0, 2, 0);
                 option.WiseWidth = 810;
                 option.WiseHeight = 40;
@@ -81,9 +82,39 @@ namespace PianoSimulator.EditPage
                     if (MainWindow.Instance != null && song != null)
                     {
                         MainWindow.Instance.Actuator = song;
+                        RenderEditArea(song);
                     }
                 };
                 Options.Children.Add(option);
+                count++;
+            }
+        }
+        private void RenderEditArea(IMusicUnitAggregation data)
+        {
+            Editors.Children.Clear();
+            List<List<IMusicUnit>> ValueGroups = [[]];
+            var nowLength = 0;
+            var nowRow = 0;
+            foreach (var unit in data.Operation)
+            {
+                var span = unit.Duration?.LastOrDefault() ?? StringService.BlankSpace;
+                if (nowLength + 40 + span > 810)
+                {
+                    ValueGroups.Add([]);
+                    nowRow++;
+                    nowLength = 0;
+                }
+                else
+                {
+                    nowLength += 40 + span;
+                }
+                ValueGroups[nowRow].Add(unit);
+            }
+            foreach (var group in ValueGroups)
+            {
+                var ttk = new TxtTrackVisual();
+                ttk.Value = group;
+                Editors.Children.Add(ttk);
             }
         }
 
@@ -94,7 +125,7 @@ namespace PianoSimulator.EditPage
                 var text = Clipboard.GetText();
                 try
                 {
-                    NormalFormDatas = [StringService.NKS_ParseToNormalFormData(text)];
+                    Value = [StringService.NKS_ParseToNormalFormData(text)];
                 }
                 catch (InvalidOperationException)
                 {
@@ -109,7 +140,7 @@ namespace PianoSimulator.EditPage
                 var text = Clipboard.GetText();
                 try
                 {
-                    NormalFormDatas = [StringService.BiliZJ_ParseToNormalFormData(text)];
+                    Value = [StringService.BiliZJ_ParseToNormalFormData(text)];
                 }
                 catch (InvalidOperationException)
                 {
@@ -121,7 +152,7 @@ namespace PianoSimulator.EditPage
         {
             try
             {
-                NormalFormDatas = StringService.SelectJsonFiles().Select(x => x.JsonParse<NormalFormData>()).Where(x => x != null).ToArray();
+                Value = StringService.SelectJsonFiles().Select(x => x.JsonParse<NormalFormData>()).Where(x => x != null).ToArray();
             }
             catch
             {
@@ -132,7 +163,7 @@ namespace PianoSimulator.EditPage
         {
             try
             {
-                NormalFormDatas = StringService.SelectTxtFiles().Select(x => StringService.BiliZJ_ParseToNormalFormData(x)).ToArray();
+                Value = StringService.SelectTxtFiles().Select(x => StringService.BiliZJ_ParseToNormalFormData(x)).ToArray();
             }
             catch (InvalidOperationException)
             {
