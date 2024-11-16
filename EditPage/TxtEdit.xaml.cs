@@ -34,8 +34,8 @@ namespace PianoSimulator.EditPage
 
         private NormalFormData[] _normalformdatas = [];
         private TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
-            .SetProperty(x => x.BorderBrush, Brushes.Wheat)
-            .SetProperty(x => x.Foreground, Brushes.Lime)
+            .SetProperty(x => x.BorderBrush, Brushes.Cyan)
+            .SetProperty(x => x.Foreground, Brushes.Cyan)
             .SetParams((x) =>
             {
                 x.Duration = 0.2;
@@ -89,6 +89,19 @@ namespace PianoSimulator.EditPage
 
         }
 
+        private void RenderEditor(Song? target)
+        {
+            if (MainWindow.Instance != null && target != null && !_isRendering)
+            {
+                Selected = target;
+                NameInput.Text = target.Name;
+                MainWindow.Instance.Actuator = this;
+                MainWindow.Lock(() =>
+                {
+                    _ = Task.Run(() => RenderEditorUnit(target));
+                });
+            }
+        }
         private void RenderSelectList()
         {
             Options.Children.Clear();
@@ -104,21 +117,13 @@ namespace PianoSimulator.EditPage
                 {
                     NameInput.Text = data.Name;
                     var song = this[data.Name]?.ToSong();
-                    if (MainWindow.Instance != null && song != null)
-                    {
-                        Selected = song;
-                        MainWindow.Instance.Actuator = this;
-                        MainWindow.Lock(() =>
-                        {
-                            _ = Task.Run(() => RenderEditArea(song));
-                        });
-                    }
+                    RenderEditor(song);
                 };
                 Options.Children.Add(option);
                 count++;
             }
         }
-        private void RenderEditArea(IMusicUnitAggregation data)
+        private void RenderEditorUnit(IMusicUnitAggregation data)
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
@@ -183,7 +188,7 @@ namespace PianoSimulator.EditPage
         {
             if (!Notification.Select("这将从粘贴板获取数据,是否继续?", "询问", "继续", "取消")) return;
 
-            if (Notification.Select("选择数据格式", "询问", "NKS", "KB"))
+            if (Notification.Select("选择数据格式", "询问", "NKS", "CKS"))
             {
                 var text = Clipboard.GetText();
                 try
@@ -208,17 +213,6 @@ namespace PianoSimulator.EditPage
                 }
             }
         }
-        private void Json_Click(object sender, MouseButtonEventArgs e)
-        {
-            try
-            {
-                Value = StringService.SelectJsonFiles().Select(x => x.JsonParse<NormalFormData>()).Where(x => x != null).ToArray();
-            }
-            catch
-            {
-                Notification.Message($"选中文件中存在异常个体,无法进行解析", "⚠ 警告", "已知晓");
-            }
-        }
         private void NKSTxt_Click(object sender, MouseButtonEventArgs e)
         {
             try
@@ -241,6 +235,7 @@ namespace PianoSimulator.EditPage
                 Notification.Message($"选中文件中存在异常个体,无法进行解析", "⚠ 警告", "已知晓");
             }
         }
+
         private void NameInput_MouseEnter(object sender, MouseEventArgs e)
         {
             NameInput.BeginTransition(_selected);
@@ -248,22 +243,64 @@ namespace PianoSimulator.EditPage
         private void NameInput_MouseLeave(object sender, MouseEventArgs e)
         {
             NameInput.BeginTransition(_noselected);
+            Keyboard.ClearFocus();
         }
-        private void CreateNew_Click(object sender, MouseButtonEventArgs e)
-        {
 
-        }
-        private void ReadData_Click(object sender, MouseButtonEventArgs e)
+        private void Open_Click(object sender, MouseButtonEventArgs e)
         {
-
+            try
+            {
+                Value = StringService.SelectJsonFiles(IsMultiselect: true, FolderSet.Generalization).Select(x => x.JsonParse<NormalFormData>()).Where(x => x != null).ToArray();
+            }
+            catch
+            {
+                Notification.Message($"数据损坏,无法解析", "⚠ 警告", "已知晓");
+            }
         }
         private void Save_Click(object sender, MouseButtonEventArgs e)
         {
-
+            if (Selected != null)
+            {
+                Selected.Name = Selected.Name == string.Empty || Selected.Name.Contains(' ') || Selected.Name.Contains('.') ? "default" : Selected.Name;
+                try
+                {
+                    Selected.Name.CreatJsonFile(FolderSet.Generalization, Selected);
+                    Notification.Message("存储成功:\n" + FolderSet.Generalization + Selected.Name + ".json", "消息", "已知晓");
+                }
+                catch
+                {
+                    Notification.Message("存储为json的过程发生错误", "错误", "已知晓");
+                }
+            }
+        }
+        private void Connect_Click(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                var result = StringService.SelectJsonFiles(IsMultiselect: false, FolderSet.Generalization).FirstOrDefault()?.JsonParse<NormalFormData>();
+                if (Selected != null && result != null)
+                {
+                    Selected += result.ToSong();
+                    RenderEditor(Selected);
+                }
+                else if (Selected == null && result != null)
+                {
+                    Selected = new Song();
+                    Selected += result.ToSong();
+                    RenderEditor(Selected);
+                }
+            }
+            catch
+            {
+                Notification.Message($"数据损坏,无法解析", "⚠ 警告", "已知晓");
+            }
         }
         private void Refresh_Click(object sender, MouseButtonEventArgs e)
         {
-
+            if (Selected != null)
+            {
+                RenderEditor(Selected);
+            }
         }
     }
 }

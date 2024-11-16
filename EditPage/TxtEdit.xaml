@@ -22,22 +22,19 @@
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,3,0" Margin="0,40,0,0">
             <TextBlock Text="曲名" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
         </Border>
-        <TextBox x:Name="NameInput" MouseEnter="NameInput_MouseEnter" MouseLeave="NameInput_MouseLeave" BorderBrush="White" Text="default" Foreground="White" FontSize="20" Height="30" Width="600" Margin="0,40,250,0" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center">
-            <TextBox.Template>
-                <ControlTemplate>
-                    <Grid>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,0,1,0" CornerRadius="5"/>
-                        <TextBlock Text="{Binding ElementName=NameInput,Path=Text}" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" TextAlignment="Center"/>
-                    </Grid>
-                </ControlTemplate>
-            </TextBox.Template>
-        </TextBox>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,3,0" Margin="0,40,0,0">
+            <Grid VerticalAlignment="Center" Margin="102,0,102,0">
+                <TextBlock Text="《" FontSize="26" TextAlignment="Center" Width="30" Foreground="{Binding ElementName=NameInput,Path=BorderBrush}" Margin="-30,0,600,0"/>
+                <TextBox x:Name="NameInput" Width="600" Height="30" CaretBrush="Violet" TextAlignment="Center" BorderThickness="0" MouseEnter="NameInput_MouseEnter" MouseLeave="NameInput_MouseLeave" BorderBrush="White" Text="default" Foreground="White" Background="Transparent" FontSize="26"/>
+                <TextBlock Text="》" FontSize="26" TextAlignment="Center" Width="20" Foreground="{Binding ElementName=NameInput,Path=BorderBrush}" Margin="600,0,-20,0"/>
+            </Grid>
+        </Border>
         <mn:MButton Text=". txt_nks" Click="NKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,35,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text=". txt_cks" Click="CKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="粘贴板" Click="FromKeyBoard_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="新建" Click="CreateNew_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="读取" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="打开" Click="Open_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="拼接" Click="Connect_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="刷新" Click="Refresh_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
         <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ScrollViewer Margin="0,0,-20,0">

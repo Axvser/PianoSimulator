@@ -77,12 +77,13 @@ namespace PianoSimulator.BasicService
         /// <summary>
         /// 读取选中txt文件的文本内容
         /// </summary>
-        public static string[] SelectTxtFiles()
+        public static string[] SelectTxtFiles(bool IsMultiselect = true, string? folder = default)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "选择文件（可多选）|*.txt";
-            openFileDialog.Multiselect = true;
+            openFileDialog.InitialDirectory = @folder ?? @"C:\";
+            var selectTxt = IsMultiselect ? "多" : "单";
+            openFileDialog.Filter = $"选择文件（{selectTxt}选）|*.txt";
+            openFileDialog.Multiselect = IsMultiselect;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
 
@@ -95,12 +96,13 @@ namespace PianoSimulator.BasicService
         /// <summary>
         /// 读取选中Json文件的文本内容
         /// </summary>
-        public static string[] SelectJsonFiles()
+        public static string[] SelectJsonFiles(bool IsMultiselect = true, string? folder = default)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = @"C:\";
-            openFileDialog.Filter = "选择文件（可多选）|*.json";
-            openFileDialog.Multiselect = true;
+            openFileDialog.InitialDirectory = @folder ?? @"C:\";
+            var selectTxt = IsMultiselect ? "多" : "单";
+            openFileDialog.Filter = $"选择文件（{selectTxt}选）|*.json";
+            openFileDialog.Multiselect = IsMultiselect;
             openFileDialog.CheckFileExists = true;
             openFileDialog.CheckPathExists = true;
 
