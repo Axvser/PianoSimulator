@@ -19,18 +19,19 @@ namespace PianoSimulator.BasicService
                 Simulator.Keyboard.KeyDown(key);
             }
         }
-
-        public static void ReleasePlay(VirtualKeyCode key)
+        public static void ReleasePlay(ICollection<VirtualKeyCode> keys)
         {
-            Simulator.Keyboard.KeyUp(key);
+            foreach (var key in keys)
+            {
+                Simulator.Keyboard.KeyDown(key);
+            }
         }
 
         public static void Preview(ICollection<VirtualKeyCode> keys)
         {
 
         }
-
-        public static void ReleasePreview(VirtualKeyCode key)
+        public static void ReleasePreview(ICollection<VirtualKeyCode> keys)
         {
 
         }

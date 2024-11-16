@@ -18,7 +18,6 @@ namespace PianoSimulator.Generalization
             Name = song.Name;
             Operations = song.Operation.Select(x => x.Operation).ToList();
             Durations = song.Operation.Select(x => x.Duration).ToList();
-            SimulatorModes = song.Operation.Select(x => x.SimulatorMode).ToList();
         }
         public NormalFormData(string nks)
         {
@@ -52,7 +51,6 @@ namespace PianoSimulator.Generalization
                         var note = new Note();
                         note.Key = Operations[i][0];
                         note.Span = Durations[i][0];
-                        note.Mode = SimulatorModes[i][0];
                         song.Operation.Add(note);
                     }
                     else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length && Operations[i].Length == SimulatorModes[i].Length)
@@ -64,7 +62,6 @@ namespace PianoSimulator.Generalization
                             var unitnote = new Note();
                             unitnote.Key = Operations[i][j];
                             unitnote.Span = Durations[i][j];
-                            unitnote.Mode = SimulatorModes[i][j];
                             notes[j] = unitnote;
                         }
                         chord.NewValue(notes);

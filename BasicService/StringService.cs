@@ -23,7 +23,7 @@ namespace PianoSimulator.BasicService
         /// </remarks>
         /// <param name="data">NKS数据</param>
         /// <exception cref="InvalidOperationException"></exception>
-        public static NormalFormData NKS_ParseToNormalFormData(string data, SimulatorModes simulatorModes = SimulatorModes.ShortPress)
+        public static NormalFormData NKS_ParseToNormalFormData(string data)
         {
             var values = data.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
             var contentLength = values.Length - 1;
@@ -42,7 +42,6 @@ namespace PianoSimulator.BasicService
                     {
                         keys.Add(key.ToVirtualKeyCode());
                         spans.Add(values[next].ToInt() ?? 0);
-                        modes.Add(simulatorModes);
                     }
                     result.Operations.Add([.. keys]);
                     result.Durations.Add([.. spans]);
@@ -66,11 +65,11 @@ namespace PianoSimulator.BasicService
         /// </remarks>
         /// <param name="data">CKS数据</param>
         /// <exception cref="InvalidOperationException"></exception>
-        public static NormalFormData CKS_ParseToNormalFormData(string data, SimulatorModes simulatorModes = SimulatorModes.ShortPress, string name = "default")
+        public static NormalFormData CKS_ParseToNormalFormData(string data, string name = "default")
         {
             Song result = new Song();
             result.Name = name;
-            RecursivParse(data, false, 0, result, simulatorModes);
+            RecursivParse(data, false, 0, result);
             return new NormalFormData(result);
         }
 
@@ -167,7 +166,7 @@ namespace PianoSimulator.BasicService
         /// </summary>
         private static string target2 { get; set; } = @"\([A-Z]+\)|[A-Z]";
 
-        private static void RecursivParse(string text, bool isRecursiv, int value, Song Target, SimulatorModes simulatorModes)//解析按键谱
+        private static void RecursivParse(string text, bool isRecursiv, int value, Song Target)//解析按键谱
         {
             MatchCollection matches;//操作合集
             if (isRecursiv)
@@ -187,22 +186,22 @@ namespace PianoSimulator.BasicService
                     {
                         if (i == matches.Count - 1)
                         {
-                            Target.Operation.Add(new Note(matches[i].Value.ToString()[0], value, simulatorModes));
+                            Target.Operation.Add(new Note(matches[i].Value.ToString()[0], value));
                         }
                         else
                         {
-                            Target.Operation.Add(new Note(matches[i].Value.ToString()[0], BlankSpace / 4, simulatorModes));
+                            Target.Operation.Add(new Note(matches[i].Value.ToString()[0], BlankSpace / 4));
                         }
                     }
                     else if (matches[i].Value.ToString()[0] == '(')//若获取到一个和弦
                     {
                         if (i == matches.Count - 1)
                         {
-                            Target.Operation.Add(new Chord(matches[i].Value.ToString(), value, simulatorModes));
+                            Target.Operation.Add(new Chord(matches[i].Value.ToString(), value));
                         }
                         else
                         {
-                            Target.Operation.Add(new Chord(matches[i].Value.ToString(), BlankSpace / 4, simulatorModes));
+                            Target.Operation.Add(new Chord(matches[i].Value.ToString(), BlankSpace / 4));
                         }
                     }
                 }
@@ -211,15 +210,15 @@ namespace PianoSimulator.BasicService
                     int span = GetSpanFromSpaceNum(FindBlankSpaceNumber(matches, i));
                     if (matches[i].Value.ToString()[0] >= 'A' && matches[i].Value.ToString()[0] <= 'Z')//若捕获到单个音符
                     {
-                        Target.Operation.Add(new Note(matches[i].Value.ToString()[0], span, simulatorModes));
+                        Target.Operation.Add(new Note(matches[i].Value.ToString()[0], span));
                     }
                     else if (matches[i].Value.ToString()[0] == '(')//若获取到一个和弦
                     {
-                        Target.Operation.Add(new Chord(matches[i].Value.ToString(), span, simulatorModes));
+                        Target.Operation.Add(new Chord(matches[i].Value.ToString(), span));
                     }
                     else if (matches[i].Value.ToString()[0] == '[')//连弹操作要进入递归
                     {
-                        RecursivParse(matches[i].Value.ToString(), true, span, Target, simulatorModes);
+                        RecursivParse(matches[i].Value.ToString(), true, span, Target);
                     }
                 }
             }

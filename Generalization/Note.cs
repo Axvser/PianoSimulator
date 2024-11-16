@@ -13,17 +13,16 @@ namespace PianoSimulator.Generalization
     {
         public Note() { }
 
-        public Note(char key, int span, SimulatorModes simulatorModes = SimulatorModes.ShortPress)
+        public Note(char key, int span)
         {
             Key = key.ToVirtualKeyCode();
             Span = span;
-            Mode = simulatorModes;
         }
 
         public VirtualKeyCode Key { get; set; } = VirtualKeyCode.SPACE;
         public int Span { get; set; } = 0;
-        public SimulatorModes Mode { get; set; } = SimulatorModes.ShortPress;
 
+        public int Count => ConversionService.KeyCodeToChar.ContainsKey(Key) ? 1 : 0;
         public VirtualKeyCode[] Operation
         {
             get => [Key];
@@ -33,11 +32,6 @@ namespace PianoSimulator.Generalization
         {
             get => [Span];
             set => Span = value.FirstOrDefault();
-        }
-        public SimulatorModes[] SimulatorMode
-        {
-            get => [Mode];
-            set => Mode = value.FirstOrDefault();
         }
     }
 }

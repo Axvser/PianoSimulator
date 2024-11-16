@@ -199,7 +199,13 @@ namespace PianoSimulator
                 var index = TxtSingleVisual.Selected.Value.Duration.Length - 1;
                 if (index >= 0)
                 {
-                    TxtSingleVisual.Selected.Value.Duration[index] += EditTime;
+                    var newSpan = TxtSingleVisual.Selected.Value.Duration[index] + EditTime;
+                    int[] newTimes = new int[TxtSingleVisual.Selected.Value.Count];
+                    for (int i = 0; i < TxtSingleVisual.Selected.Value.Count; i++)
+                    {
+                        newTimes[i] = newSpan;
+                    }
+                    TxtSingleVisual.Selected.Value.Duration = newTimes;
                 }
             }
         }
@@ -210,10 +216,15 @@ namespace PianoSimulator
                 var index = TxtSingleVisual.Selected.Value.Duration.Length - 1;
                 if (index >= 0)
                 {
-                    var newTime = TxtSingleVisual.Selected.Value.Duration[index] - EditTime;
-                    if (newTime > 100)
+                    var newSpan = TxtSingleVisual.Selected.Value.Duration[index] - EditTime;
+                    if (newSpan > 50)
                     {
-                        TxtSingleVisual.Selected.Value.Duration[index] = newTime;
+                        int[] newTimes = new int[TxtSingleVisual.Selected.Value.Count];
+                        for (int i = 0; i < TxtSingleVisual.Selected.Value.Count; i++)
+                        {
+                            newTimes[i] = newSpan;
+                        }
+                        TxtSingleVisual.Selected.Value.Duration = newTimes;
                         TxtSingleVisual.Selected.Width -= EditTime;
                     }
                 }

@@ -92,20 +92,17 @@ namespace PianoSimulator.BasicService
         {
             var key = unit.Operation.FirstOrDefault();
             var span = unit.Duration.FirstOrDefault();
-            var mode = unit.SimulatorMode;
-            if (key == default || span == default || mode == default) throw new ArgumentException($"CONS01 未能将单元换算为Note实例");
+            if (key == default || span == default) throw new ArgumentException($"CONS01 未能将单元换算为Note实例");
             var result = new Note();
             result.Key = key;
             result.Duration[0] = span;
-            result.SimulatorMode = mode;
             return result;
         }
         public static Chord ToChord(this IMusicUnit unit)
         {
             var keys = unit.Operation;
             var spans = unit.Duration;
-            var mode = unit.SimulatorMode;
-            if (mode == default || keys.Length != spans.Length) throw new ArgumentException($"CONS02 未能将单元换算为Chord实例");
+            if (keys.Length != spans.Length) throw new ArgumentException($"CONS02 未能将单元换算为Chord实例");
             var result = new Chord();
             for (int i = 0; i < spans.Length; i++)
             {
