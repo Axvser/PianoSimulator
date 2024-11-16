@@ -19,25 +19,24 @@
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,240,0,0">
             <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,25,0"/>
         </Border>
-        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,0,0" Margin="0,40,0,0">
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,3,0" Margin="0,40,0,0">
             <TextBlock Text="曲名" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
         </Border>
-        <TextBox x:Name="NameInput" MouseEnter="NameInput_MouseEnter" MouseLeave="NameInput_MouseLeave" BorderBrush="White" Text="default" Foreground="White" FontSize="20" Height="30" Width="700" Margin="0,40,150,0" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center">
+        <TextBox x:Name="NameInput" MouseEnter="NameInput_MouseEnter" MouseLeave="NameInput_MouseLeave" BorderBrush="White" Text="default" Foreground="White" FontSize="20" Height="30" Width="600" Margin="0,40,250,0" VerticalAlignment="Top" HorizontalAlignment="Right" TextAlignment="Center">
             <TextBox.Template>
                 <ControlTemplate>
                     <Grid>
-                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5"/>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1,0,1,0" CornerRadius="5"/>
                         <TextBlock Text="{Binding ElementName=NameInput,Path=Text}" FontSize="{TemplateBinding FontSize}" Foreground="{TemplateBinding Foreground}" VerticalAlignment="Center" TextAlignment="Center"/>
                     </Grid>
                 </ControlTemplate>
             </TextBox.Template>
         </TextBox>
-        <mn:MButton Text=". json" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,40,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text=". txt" Click="Txt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="NKS式" Click="NKS_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="Keys式" Click="Keys_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,160,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text=". txt_nks" Click="NKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,35,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text=". txt_cks" Click="CKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="粘贴板" Click="FromKeyBoard_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="新建" Click="CreateNew_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="读取" Click="ReadData_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text="读取" Click="Json_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
         <mn:MButton Text="刷新" Click="Refresh_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
         <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">

@@ -59,14 +59,14 @@ namespace PianoSimulator.BasicService
         }
 
         /// <summary>
-        /// 将BiliZJ数据转换为通用乐曲数据
+        /// 将CKS数据转换为通用乐曲数据
         /// </summary>
         /// <remarks>
-        /// BiliZJ指代 Bilibili指尖旋律按键谱格式的乐曲数据
+        /// CKS指代 无Name开头,仅以符号、字母、空格标记数据的格式
         /// </remarks>
-        /// <param name="data">NKS数据</param>
+        /// <param name="data">CKS数据</param>
         /// <exception cref="InvalidOperationException"></exception>
-        public static NormalFormData BiliZJ_ParseToNormalFormData(string data, SimulatorModes simulatorModes = SimulatorModes.ShortPress, string name = "default")
+        public static NormalFormData CKS_ParseToNormalFormData(string data, SimulatorModes simulatorModes = SimulatorModes.ShortPress, string name = "default")
         {
             Song result = new Song();
             result.Name = name;

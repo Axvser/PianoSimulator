@@ -150,10 +150,10 @@ namespace PianoSimulator.EditPage
                 {
                     var ttk = new TxtTrackVisual();
                     ttk.Value = group;
-                    tracks.Add(ttk);                
+                    tracks.Add(ttk);
                 });
             }
-            foreach(var tack in tracks)
+            foreach (var tack in tracks)
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
@@ -179,9 +179,11 @@ namespace PianoSimulator.EditPage
             }
         }
 
-        private void NKS_Click(object sender, MouseButtonEventArgs e)
+        private void FromKeyBoard_Click(object sender, MouseButtonEventArgs e)
         {
-            if (Notification.Select("这将从您的粘贴板获取NKS格式的乐曲数据,确认执行此操作吗?", "询问", "确定", "取消"))
+            if (!Notification.Select("这将从粘贴板获取数据,是否继续?", "询问", "继续", "取消")) return;
+
+            if (Notification.Select("选择数据格式", "询问", "NKS", "KB"))
             {
                 var text = Clipboard.GetText();
                 try
@@ -193,15 +195,12 @@ namespace PianoSimulator.EditPage
                     Notification.Message("数据存在格式错误", "⚠ 警告", "已知晓");
                 }
             }
-        }
-        private void Keys_Click(object sender, MouseButtonEventArgs e)
-        {
-            if (Notification.Select("这将从您的粘贴板获取Keys格式的乐曲数据,确认执行此操作吗?", "询问", "确定", "取消"))
+            else
             {
                 var text = Clipboard.GetText();
                 try
                 {
-                    Value = [StringService.BiliZJ_ParseToNormalFormData(text)];
+                    Value = [StringService.CKS_ParseToNormalFormData(text)];
                 }
                 catch (InvalidOperationException)
                 {
@@ -220,11 +219,22 @@ namespace PianoSimulator.EditPage
                 Notification.Message($"选中文件中存在异常个体,无法进行解析", "⚠ 警告", "已知晓");
             }
         }
-        private void Txt_Click(object sender, MouseButtonEventArgs e)
+        private void NKSTxt_Click(object sender, MouseButtonEventArgs e)
         {
             try
             {
-                Value = StringService.SelectTxtFiles().Select(x => StringService.BiliZJ_ParseToNormalFormData(x)).ToArray();
+                Value = StringService.SelectTxtFiles().Select(x => StringService.NKS_ParseToNormalFormData(x)).ToArray();
+            }
+            catch (InvalidOperationException)
+            {
+                Notification.Message($"选中文件中存在异常个体,无法进行解析", "⚠ 警告", "已知晓");
+            }
+        }
+        private void CKSTxt_Click(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                Value = StringService.SelectTxtFiles().Select(x => StringService.CKS_ParseToNormalFormData(x)).ToArray();
             }
             catch (InvalidOperationException)
             {
