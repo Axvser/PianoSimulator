@@ -3,11 +3,13 @@ using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PianoSimulator.EditPage
 {
@@ -44,6 +47,7 @@ namespace PianoSimulator.EditPage
             {
                 x.Duration = 0.2;
             });
+        private bool _isRendering = false;
 
         public NormalFormData[] Value
         {
@@ -66,6 +70,7 @@ namespace PianoSimulator.EditPage
                 }
             }
         }
+        public Song? Selected { get; private set; }
 
         public void Play()
         {
@@ -101,8 +106,12 @@ namespace PianoSimulator.EditPage
                     var song = this[data.Name]?.ToSong();
                     if (MainWindow.Instance != null && song != null)
                     {
-                        MainWindow.Instance.Actuator = song;
-                        RenderEditArea(song);
+                        Selected = song;
+                        MainWindow.Instance.Actuator = this;
+                        MainWindow.Lock(() =>
+                        {
+                            _ = Task.Run(() => RenderEditArea(song));
+                        });
                     }
                 };
                 Options.Children.Add(option);
@@ -111,7 +120,11 @@ namespace PianoSimulator.EditPage
         }
         private void RenderEditArea(IMusicUnitAggregation data)
         {
-            Editors.Children.Clear();
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Editors.Children.Clear();
+                _isRendering = true;
+            });
             List<List<IMusicUnit>> ValueGroups = [[]];
             var nowLength = 0;
             var nowRow = 0;
@@ -130,12 +143,27 @@ namespace PianoSimulator.EditPage
                 }
                 ValueGroups[nowRow].Add(unit);
             }
+            List<TxtTrackVisual> tracks = new List<TxtTrackVisual>(ValueGroups.Count);
             foreach (var group in ValueGroups)
             {
-                var ttk = new TxtTrackVisual();
-                ttk.Value = group;
-                Editors.Children.Add(ttk);
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    var ttk = new TxtTrackVisual();
+                    ttk.Value = group;
+                    tracks.Add(ttk);                
+                });
             }
+            foreach(var tack in tracks)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    Editors.Children.Add(tack);
+                }, DispatcherPriority.Render);
+            }
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                MainWindow.UnLock(() => { _isRendering = false; });
+            }, DispatcherPriority.Background);
         }
 
         public static void Scroll(Thickness value)
@@ -210,6 +238,22 @@ namespace PianoSimulator.EditPage
         private void NameInput_MouseLeave(object sender, MouseEventArgs e)
         {
             NameInput.BeginTransition(_noselected);
+        }
+        private void CreateNew_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void ReadData_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void Save_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+        private void Refresh_Click(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

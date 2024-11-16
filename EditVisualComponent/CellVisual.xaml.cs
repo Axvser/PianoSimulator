@@ -1,4 +1,5 @@
 ﻿using PianoSimulator.Generalization;
+using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,13 @@ namespace PianoSimulator.EditVisualComponent
     /// <summary>
     /// CellVisual.xaml 的交互逻辑
     /// </summary>
-    public partial class CellVisual : UserControl,IExecutable
+    public partial class CellVisual : UserControl, IExecutable, IVisualEditUnit
     {
+        public int Paragraph { get; set; } = 0;
+        public int AudioTrack { get; set; } = 0;
+        public int Order { get; set; } = 0;
+        public int NoteType { get; set; } = 16;
+
         public CellVisual()
         {
             InitializeComponent();

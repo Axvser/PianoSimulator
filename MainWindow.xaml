@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PianoSimulator"
         xmlns:mn="clr-namespace:MinimalisticWPF;assembly=MinimalisticWPF"
+        xmlns:cp="clr-namespace:PianoSimulator.EditVisualComponent"
         mc:Ignorable="d"
         Title="MainWindow" 
         WindowStyle="None"
@@ -16,6 +17,7 @@
     <Viewbox>
         <Grid Height="540" Width="960">
             <mn:MTopBar VerticalAlignment="Top" Title="PianoSimulator"/>
+            <cp:WhileLoading x:Name="LoadingBlock" Grid.ZIndex="3" Opacity="0" Width="0"/>
             <Border x:Name="B1" Margin="0,80,0,455" Width="150" HorizontalAlignment="Left" Background="Cyan"/>
             <Border x:Name="B2" Margin="150,80,0,455" Width="200" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
             <Border x:Name="B3" Margin="350,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>

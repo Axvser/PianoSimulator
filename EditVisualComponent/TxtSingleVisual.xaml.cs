@@ -1,5 +1,6 @@
 ﻿using PianoSimulator.BasicService;
 using PianoSimulator.Generalization;
+using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,13 @@ using System.Windows.Shapes;
 
 namespace PianoSimulator.EditVisualComponent
 {
-    public partial class TxtSingleVisual : StackPanel, IExecutable
+    public partial class TxtSingleVisual : StackPanel, IExecutable, IVisualEditUnit
     {
+        public int Paragraph { get; set; } = -1;
+        public int AudioTrack { get; set; } = 0;
+        public int Order { get; set; } = 0;
+        public int NoteType { get; set; } = -1;
+
         public TxtSingleVisual()
         {
             InitializeComponent();
@@ -37,7 +43,7 @@ namespace PianoSimulator.EditVisualComponent
             {
                 x.Duration = 0.2;
             });
-
+     
         public IMusicUnit Value
         {
             get => _musicUnit;

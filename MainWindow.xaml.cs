@@ -4,6 +4,7 @@ using PianoSimulator.BasicService;
 using PianoSimulator.EditPage;
 using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
+using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -164,6 +165,15 @@ namespace PianoSimulator
             base.OnClosed(e);
         }
 
+        public static void Lock(Action action)
+        {
+            Instance?.LoadingBlock.Open(action);
+        }
+        public static void UnLock(Action action)
+        {
+            Instance?.LoadingBlock.Close(action);
+        }
+
         private void RightScroll(object sender, HotKeyEventArgs e)
         {
             TxtEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
@@ -201,7 +211,7 @@ namespace PianoSimulator
                 if (index >= 0)
                 {
                     var newTime = TxtSingleVisual.Selected.Value.Duration[index] - EditTime;
-                    if (newTime > 50)
+                    if (newTime > 100)
                     {
                         TxtSingleVisual.Selected.Value.Duration[index] = newTime;
                         TxtSingleVisual.Selected.Width -= EditTime;
