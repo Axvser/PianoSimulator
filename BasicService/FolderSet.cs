@@ -13,5 +13,8 @@ namespace PianoSimulator.BasicService
         public static string Audio { get; private set; } = nameof(Audio).CreatFolder(Meta);
         public static string Generalization { get; private set; } = nameof(Generalization).CreatFolder(Meta);
         public static string VisualEdit { get; private set; } = nameof(VisualEdit).CreatFolder(Meta);
+        public static string TempTxtEditor { get; private set; } = nameof(TempTxtEditor).CreatFolder(Meta);
+        public static string TempVisEditor { get; private set; } = nameof(TempVisEditor).CreatFolder(Meta);
+        public static string TempHotKey { get; private set; } = nameof(TempHotKey).CreatFolder(Meta);
     }
 }

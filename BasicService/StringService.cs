@@ -45,7 +45,6 @@ namespace PianoSimulator.BasicService
                     }
                     result.Operations.Add([.. keys]);
                     result.Durations.Add([.. spans]);
-                    result.SimulatorModes.Add([.. modes]);
                     index += 2;
                 }
                 while (index + 1 < values.Length);

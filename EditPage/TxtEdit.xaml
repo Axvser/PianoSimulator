@@ -13,11 +13,11 @@
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,0,0">
             <TextBlock Text="TxtEdit" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
         </Border>
-        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Right" BorderThickness="0,0,3,0">
-            <TextBlock Text="数据源 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,25,0"/>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0">
+            <TextBlock Text="数据源 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
         </Border>
-        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,240,0,0">
-            <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="White" Margin="0,0,25,0"/>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,169,0,0">
+            <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
         </Border>
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,3,0" Margin="0,40,0,0">
             <TextBlock Text="曲名" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
@@ -29,13 +29,14 @@
                 <TextBlock Text="》" FontSize="26" TextAlignment="Center" Width="20" Foreground="{Binding ElementName=NameInput,Path=BorderBrush}" Margin="600,0,-20,0"/>
             </Grid>
         </Border>
-        <mn:MButton Text=". txt_nks" Click="NKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,35,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text=". txt_cks" Click="CKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="粘贴板" Click="FromKeyBoard_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="打开" Click="Open_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,285,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="拼接" Click="Connect_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="40" WiseWidth="150"/>
-        <mn:MButton Text="刷新" Click="Refresh_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="40" WiseWidth="150"/>
+        <mn:MButton Text=". txt_nks" Click="NKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,38,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text=". txt_cks" Click="CKSTxt_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,80,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="粘贴板" Click="FromKeyBoard_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,120,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="打开" Click="Open_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,214,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,254,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="拼接" Click="Connect_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,294,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="刷新" Click="Refresh_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,334,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="♪" Click="ApplyToMain_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,374,0,0" WiseHeight="75" WiseWidth="150"/>
         <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ScrollViewer Margin="0,0,-20,0">
                 <StackPanel x:Name="Options">

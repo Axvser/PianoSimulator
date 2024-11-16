@@ -264,8 +264,8 @@ namespace PianoSimulator.EditPage
                 Selected.Name = Selected.Name == string.Empty || Selected.Name.Contains(' ') || Selected.Name.Contains('.') ? "default" : Selected.Name;
                 try
                 {
-                    Selected.Name.CreatJsonFile(FolderSet.Generalization, Selected);
-                    Notification.Message("存储成功:\n" + FolderSet.Generalization + Selected.Name + ".json", "消息", "已知晓");
+                    Selected.Name.CreatJsonFile(FolderSet.Generalization, Selected.ToNormalFormData());
+                    Notification.Message("保存成功 √", "消息", "已知晓");
                 }
                 catch
                 {
@@ -300,6 +300,17 @@ namespace PianoSimulator.EditPage
             if (Selected != null)
             {
                 RenderEditor(Selected);
+            }
+        }
+        private void ApplyToMain_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (Selected == null) { Notification.Message("您无法选择空数据作为游戏内曲目", "⚠ 警告", "已知晓"); return; }
+            if (Notification.Select($"是否将当前游戏内曲目切换为以下歌曲吗 ?\n《 {Selected.Name} 》", "询问", "是", "否"))
+            {
+                if (MainWindow.Instance != null)
+                {
+                    MainWindow.Instance.Actuator = Selected;
+                }
             }
         }
     }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace PianoSimulator.Visualization
 {
+    /// <summary>
+    /// 高级可视化编辑单元,包含单元的位置信息
+    /// </summary>
     public interface IVisualEditUnit
     {
         int Paragraph { get; set; }

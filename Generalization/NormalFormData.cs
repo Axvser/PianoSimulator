@@ -25,13 +25,11 @@ namespace PianoSimulator.Generalization
             Name = data.Name;
             Operations = data.Operations;
             Durations = data.Durations;
-            SimulatorModes = data.SimulatorModes;
         }
 
         public string Name { get; set; } = string.Empty;
         public List<VirtualKeyCode[]> Operations { get; set; } = [];
         public List<int[]> Durations { get; set; } = [];
-        public List<SimulatorModes[]> SimulatorModes { get; set; } = [];
 
         /// <summary>
         /// 转换为Song实例以执行播放
@@ -40,7 +38,7 @@ namespace PianoSimulator.Generalization
         /// <exception cref="InvalidOperationException"></exception>
         public Song ToSong()
         {
-            if (Operations.Count == Durations.Count && Durations.Count == SimulatorModes.Count)
+            if (Operations.Count == Durations.Count)
             {
                 var song = new Song();
                 song.Name = Name;
@@ -53,7 +51,7 @@ namespace PianoSimulator.Generalization
                         note.Span = Durations[i][0];
                         song.Operation.Add(note);
                     }
-                    else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length && Operations[i].Length == SimulatorModes[i].Length)
+                    else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length)
                     {
                         var chord = new Chord();
                         Note[] notes = new Note[Operations[i].Length];
@@ -72,7 +70,7 @@ namespace PianoSimulator.Generalization
             }
             else
             {
-                throw new InvalidOperationException($"NFD01 传入的数据存在全局性损坏\n操作描述符 {Operations.Count}\n持续描述符 {Durations.Count}\n模式描述符 {SimulatorModes.Count}\n以上三个参数应相同");
+                throw new InvalidOperationException($"NFD01 传入的数据存在全局性损坏\n操作描述符 {Operations.Count}\n持续描述符 {Durations.Count}\n以上元素数量应相同");
             }
         }
 
@@ -83,7 +81,7 @@ namespace PianoSimulator.Generalization
         /// <exception cref="InvalidOperationException"></exception>
         public string ToNKS()
         {
-            if (Operations.Count == Durations.Count && Durations.Count == SimulatorModes.Count)
+            if (Operations.Count == Durations.Count)
             {
                 var song = string.Empty;
                 song += Name + " ";
@@ -95,7 +93,7 @@ namespace PianoSimulator.Generalization
                         var span = Durations[i][0];
                         song += key.ToChar() + " " + span.ToString() + " ";
                     }
-                    else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length && Operations[i].Length == SimulatorModes[i].Length)
+                    else if (Operations[i].Length > 1 && Operations[i].Length == Durations[i].Length)
                     {
                         var keys = string.Empty;
                         var span = 0;
@@ -111,7 +109,7 @@ namespace PianoSimulator.Generalization
             }
             else
             {
-                throw new InvalidOperationException($"NFD01 传入的数据存在全局性损坏\n操作描述符 {Operations.Count}\n持续描述符 {Durations.Count}\n模式描述符 {SimulatorModes.Count}\n以上三个参数应相同");
+                throw new InvalidOperationException($"NFD01 传入的数据存在全局性损坏\n操作描述符 {Operations.Count}\n持续描述符 {Durations.Count}\n以上元素数量应相同");
             }
         }
     }

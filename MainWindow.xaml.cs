@@ -97,7 +97,6 @@ namespace PianoSimulator
             }
         }
 
-
         private void PageLightChange(int last, int next)
         {
             switch (last)
@@ -148,12 +147,13 @@ namespace PianoSimulator
         {
             base.OnSourceInitialized(e);
             GlobalHotKey.Awake();
-
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F1, Start);
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F2, Pause);
+            GlobalHotKey.Add(ModelKeys.CTRL, NormalKeys.F3, Stop);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.W, UpScroll);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.S, DownScroll);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.A, LeftScroll);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.D, RightScroll);
-
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.X, AddTxtEditorSpan);
             GlobalHotKey.Add(ModelKeys.SHIFT, NormalKeys.Z, ReduceTxtEditorSpan);
             NowPage.Navigate(typeof(MusicConfiguration));
@@ -174,24 +174,43 @@ namespace PianoSimulator
             Instance?.LoadingBlock.Close(action);
         }
 
-        private void RightScroll(object sender, HotKeyEventArgs e)
+        public void Start(object sender, HotKeyEventArgs e)
+        {
+            switch (ExecuteMode)
+            {
+                case ExecutionModes.Keyboard:
+                    Actuator.Play();
+                    break;
+                case ExecutionModes.Audio:
+                    Actuator.Preview();
+                    break;
+            }
+        }
+        public void Pause(object sender, HotKeyEventArgs e)
+        {
+            Actuator.Pause();
+        }
+        public void Stop(object sender, HotKeyEventArgs e)
+        {
+            Actuator.Stop();
+        }
+        public void RightScroll(object sender, HotKeyEventArgs e)
         {
             TxtEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
         }
-        private void LeftScroll(object sender, HotKeyEventArgs e)
+        public void LeftScroll(object sender, HotKeyEventArgs e)
         {
             TxtEdit.Scroll(new Thickness(ScrollDelta, 0, 0, 0));
         }
-        private void UpScroll(object sender, HotKeyEventArgs e)
+        public void UpScroll(object sender, HotKeyEventArgs e)
         {
             TxtEdit.Scroll(new Thickness(0, ScrollDelta, 0, 0));
         }
-        private void DownScroll(object sender, HotKeyEventArgs e)
+        public void DownScroll(object sender, HotKeyEventArgs e)
         {
             TxtEdit.Scroll(new Thickness(0, 0, 0, ScrollDelta));
         }
-
-        private void AddTxtEditorSpan(object sender, HotKeyEventArgs e)
+        public void AddTxtEditorSpan(object sender, HotKeyEventArgs e)
         {
             if (TxtSingleVisual.Selected != null)
             {
@@ -209,7 +228,7 @@ namespace PianoSimulator
                 }
             }
         }
-        private void ReduceTxtEditorSpan(object sender, HotKeyEventArgs e)
+        public void ReduceTxtEditorSpan(object sender, HotKeyEventArgs e)
         {
             if (TxtSingleVisual.Selected != null)
             {
