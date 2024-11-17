@@ -18,13 +18,8 @@ using System.Windows.Shapes;
 
 namespace PianoSimulator.EditVisualComponent
 {
-    public partial class TxtSingleVisual : StackPanel, IExecutable, IVisualEditUnit
+    public partial class TxtSingleVisual : StackPanel, IExecutable
     {
-        public int Paragraph { get; set; } = -1;
-        public int AudioTrack { get; set; } = 0;
-        public int Order { get; set; } = 0;
-        public int NoteType { get; set; } = -1;
-
         public TxtSingleVisual()
         {
             InitializeComponent();

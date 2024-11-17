@@ -74,7 +74,6 @@ namespace PianoSimulator.Generalization
         {
             MusicPlayService.Play(value.Operation);
             await Task.Delay(value.Duration.LastOrDefault());
-            MusicPlayService.ReleasePlay(value.Operation);
         }
         private static async Task UnitExecutePreview(IMusicUnit value)
         {

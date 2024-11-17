@@ -160,8 +160,10 @@ namespace PianoSimulator
         }
         protected override void OnClosed(EventArgs e)
         {
+            var time = DateTime.Now.ToString().Replace(' ', '-').Replace(':', '-').Replace('\\', '-').Replace('/', '-');
             GlobalHotKey.Destroy();
             Transition.Dispose();
+            TxtEdit.SaveTemp(time);
             base.OnClosed(e);
         }
 

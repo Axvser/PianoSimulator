@@ -1,4 +1,5 @@
-﻿using PianoSimulator.Generalization;
+﻿using PianoSimulator.BasicService;
+using PianoSimulator.Generalization;
 using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
@@ -20,33 +21,11 @@ namespace PianoSimulator.EditVisualComponent
     /// <summary>
     /// TrackVisual.xaml 的交互逻辑
     /// </summary>
-    public partial class TrackVisual : UserControl, IExecutable, IVisualEditUnit
+    public partial class TrackVisual : VisualUnitControlBase
     {
-        public int Paragraph { get; set; } = 0;
-        public int AudioTrack { get; set; } = -1;
-        public int Order { get; set; } = 0;
-        public int NoteType { get; set; } = -1;
-
         public TrackVisual()
         {
             InitializeComponent();
-        }
-
-        public void Play()
-        {
-
-        }
-        public void Preview()
-        {
-
-        }
-        public void Pause()
-        {
-
-        }
-        public void Stop()
-        {
-
         }
     }
 }

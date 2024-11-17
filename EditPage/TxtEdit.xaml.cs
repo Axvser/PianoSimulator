@@ -1,22 +1,11 @@
 ﻿using PianoSimulator.BasicService;
 using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace PianoSimulator.EditPage
@@ -184,6 +173,17 @@ namespace PianoSimulator.EditPage
             }
         }
 
+        public static void SaveTemp(string time)
+        {
+            if (Instance != null)
+            {
+                if (Instance.Selected != null)
+                {
+                    time.CreatJsonFile(FolderSet.TempTxtEditor, Instance.Selected);
+                }
+            }
+        }
+
         private void FromKeyBoard_Click(object sender, MouseButtonEventArgs e)
         {
             if (!Notification.Select("这将从粘贴板获取数据,是否继续?", "询问", "继续", "取消")) return;
@@ -295,12 +295,11 @@ namespace PianoSimulator.EditPage
                 Notification.Message($"数据损坏,无法解析", "⚠ 警告", "已知晓");
             }
         }
-        private void Refresh_Click(object sender, MouseButtonEventArgs e)
+        private void CreateNew_Click(object sender, MouseButtonEventArgs e)
         {
-            if (Selected != null)
-            {
-                RenderEditor(Selected);
-            }
+            NameInput.Text = "new";
+            Editors.Children.Clear();
+            Selected = null;
         }
         private void ApplyToMain_Click(object sender, MouseButtonEventArgs e)
         {

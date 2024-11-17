@@ -18,11 +18,6 @@ namespace PianoSimulator.EditVisualComponent
 {
     public partial class TxtTrackVisual : StackPanel, IExecutable
     {
-        public int Paragraph { get; set; } = -1;
-        public int AudioTrack { get; set; } = -1;
-        public int Order { get; set; } = 0;
-        public int NoteType { get; set; } = -1;
-
         public TxtTrackVisual()
         {
             InitializeComponent();

@@ -24,6 +24,21 @@ namespace PianoSimulator.EditPage
             InitializeComponent();
         }
 
+        private TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
+            .SetProperty(x => x.BorderBrush, Brushes.Cyan)
+            .SetProperty(x => x.Foreground, Brushes.Cyan)
+            .SetParams((x) =>
+            {
+                x.Duration = 0.2;
+            });
+        private TransitionBoard<TextBox> _noselected = Transition.CreateBoardFromType<TextBox>()
+            .SetProperty(x => x.BorderBrush, Brushes.White)
+            .SetProperty(x => x.Foreground, Brushes.White)
+            .SetParams((x) =>
+            {
+                x.Duration = 0.2;
+            });
+
         public void Play()
         {
 
@@ -39,6 +54,16 @@ namespace PianoSimulator.EditPage
         public void Stop()
         {
 
+        }
+
+        private void NameInput_MouseEnter(object sender, MouseEventArgs e)
+        {
+            NameInput.BeginTransition(_selected);
+        }
+        private void NameInput_MouseLeave(object sender, MouseEventArgs e)
+        {
+            NameInput.BeginTransition(_noselected);
+            Keyboard.ClearFocus();
         }
     }
 }

@@ -12,9 +12,24 @@ namespace PianoSimulator.Visualization
     /// </summary>
     public interface IVisualEditUnit
     {
+        /// <summary>
+        /// 所在段落
+        /// </summary>
         int Paragraph { get; set; }
-        int AudioTrack { get; set; }
+
+        /// <summary>
+        /// 所在音轨
+        /// </summary>
+        int Track { get; set; }
+
+        /// <summary>
+        /// 所在序列
+        /// </summary>
         int Order { get; set; }
+
+        /// <summary>
+        /// 音符类型
+        /// </summary>
         int NoteType { get; set; }
     }
 }

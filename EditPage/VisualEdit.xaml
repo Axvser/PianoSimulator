@@ -4,12 +4,43 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditPage"
+             xmlns:cp="clr-namespace:PianoSimulator.EditVisualComponent"
+             xmlns:mn="clr-namespace:MinimalisticWPF;assembly=MinimalisticWPF"
              mc:Ignorable="d" 
              Width="960" 
              Height="450">
     <Grid>
         <Border VerticalAlignment="Top" Height="30" BorderBrush="White" BorderThickness="3,0,0,0">
             <TextBlock Text="VisualEdit" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,0,0" Margin="0,40,0,0">
+            <TextBlock Text="曲名" VerticalAlignment="Center" FontSize="20" Foreground="White" Margin="20,0,0,0"/>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="800" BorderBrush="White" HorizontalAlignment="Left" BorderThickness="3,0,3,0" Margin="0,40,0,0">
+            <Grid VerticalAlignment="Center" Margin="102,0,102,0">
+                <TextBlock Text="《" FontSize="26" TextAlignment="Center" Width="25" Foreground="{Binding ElementName=NameInput,Path=BorderBrush}" Margin="-31,-2,596,2"/>
+                <TextBox x:Name="NameInput" Width="600" Height="30" CaretBrush="Violet" TextAlignment="Center" BorderThickness="0" MouseEnter="NameInput_MouseEnter" MouseLeave="NameInput_MouseLeave" BorderBrush="White" Text="default" Foreground="White" Background="Transparent" FontSize="26"/>
+                <TextBlock Text="》" FontSize="26" TextAlignment="Center" Width="15" Foreground="{Binding ElementName=NameInput,Path=BorderBrush}" Margin="600,-2,-25,2"/>
+            </Grid>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,5,0,0">
+            <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
+        </Border>
+        <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="800" Height="360">
+            <ScrollViewer x:Name="Table" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
+                <ScrollViewer.Template>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Grid>
+                            <ScrollContentPresenter CanContentScroll="{TemplateBinding CanContentScroll}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </ScrollViewer.Template>
+                <StackPanel x:Name="Editors">
+                    <cp:TxtSingleVisual Width="800"/>
+                    <cp:TxtSingleVisual Width="800"/>
+                    <cp:TxtSingleVisual Width="800"/>
+                </StackPanel>
+            </ScrollViewer>
         </Border>
     </Grid>
 </UserControl>

@@ -17,13 +17,14 @@ namespace PianoSimulator.BasicService
             foreach (var key in keys)
             {
                 Simulator.Keyboard.KeyDown(key);
+                Simulator.Keyboard.KeyUp(key);
             }
         }
         public static void ReleasePlay(ICollection<VirtualKeyCode> keys)
         {
             foreach (var key in keys)
             {
-                Simulator.Keyboard.KeyDown(key);
+                Simulator.Keyboard.KeyUp(key);
             }
         }
 
