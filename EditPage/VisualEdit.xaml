@@ -33,7 +33,7 @@
             <TextBlock Text="组合式 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
         </Border>
         <mn:MButton Text="查看" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,38,0,0" WiseHeight="35" WiseWidth="150"/>
-        <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="800" Height="360">
+        <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="801" Height="360">
             <ScrollViewer x:Name="Table" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
                 <ScrollViewer.Template>
                     <ControlTemplate TargetType="ScrollViewer">
@@ -50,7 +50,7 @@
                 </StackPanel>
             </ScrollViewer>
         </Border>
-        <mn:MButton Text="新建" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,123,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="新建" Click="CreateNew_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,123,0,0" WiseHeight="35" WiseWidth="150"/>
         <mn:MButton Text="打开" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,163,0,0" WiseHeight="35" WiseWidth="150"/>
         <mn:MButton Text="保存" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,203,0,0" WiseHeight="35" WiseWidth="150"/>
         <mn:MButton Text="拼接" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,243,0,0" WiseHeight="35" WiseWidth="150"/>

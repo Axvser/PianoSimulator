@@ -198,19 +198,51 @@ namespace PianoSimulator
         }
         public void RightScroll(object sender, HotKeyEventArgs e)
         {
-            TxtEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
+            switch (PageType)
+            {
+                case 2:
+                    TxtEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
+                    break;
+                case 3:
+                    VisualEdit.Scroll(new Thickness(0, 0, ScrollDelta, 0));
+                    break;
+            }
         }
         public void LeftScroll(object sender, HotKeyEventArgs e)
         {
-            TxtEdit.Scroll(new Thickness(ScrollDelta, 0, 0, 0));
+            switch (PageType)
+            {
+                case 2:
+                    TxtEdit.Scroll(new Thickness(ScrollDelta, 0, 0, 0));
+                    break;
+                case 3:
+                    VisualEdit.Scroll(new Thickness(ScrollDelta, 0, 0, 0));
+                    break;
+            }
         }
         public void UpScroll(object sender, HotKeyEventArgs e)
         {
-            TxtEdit.Scroll(new Thickness(0, ScrollDelta, 0, 0));
+            switch (PageType)
+            {
+                case 2:
+                    TxtEdit.Scroll(new Thickness(0, ScrollDelta, 0, 0));
+                    break;
+                case 3:
+                    VisualEdit.Scroll(new Thickness(0, ScrollDelta, 0, 0));
+                    break;
+            }
         }
         public void DownScroll(object sender, HotKeyEventArgs e)
         {
-            TxtEdit.Scroll(new Thickness(0, 0, 0, ScrollDelta));
+            switch (PageType)
+            {
+                case 2:
+                    TxtEdit.Scroll(new Thickness(0, 0, 0, ScrollDelta));
+                    break;
+                case 3:
+                    VisualEdit.Scroll(new Thickness(0, 0, 0, ScrollDelta));
+                    break;
+            }
         }
         public void AddTxtEditorSpan(object sender, HotKeyEventArgs e)
         {

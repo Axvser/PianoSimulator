@@ -26,9 +26,10 @@ namespace PianoSimulator.EditPage
         {
             InitializeComponent();
             MusicTheory = MusicConfiguration.MusicTheory;
-            Render();
+            Instance = this;
         }
 
+        private static bool _isrendering = false;
         private static TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
             .SetProperty(x => x.BorderBrush, Brushes.Cyan)
             .SetProperty(x => x.Foreground, Brushes.Cyan)
@@ -44,6 +45,7 @@ namespace PianoSimulator.EditPage
                 x.Duration = 0.2;
             });
 
+        public static VisualEdit? Instance { get; set; }
         public List<IMusicUnit> Operation
         {
             get
@@ -61,12 +63,30 @@ namespace PianoSimulator.EditPage
 
         public List<List<List<IVisualEditUnit>>> VisualEditUnit => throw new NotImplementedException();
 
+        public static void Scroll(Thickness value)
+        {
+            if (Instance != null)
+            {
+                var horizontal = Instance.Table.HorizontalOffset;
+                var vertical = Instance.Table.VerticalOffset;
+                var newHorizontal = horizontal - value.Left + value.Right;
+                var newVertical = vertical - value.Top + value.Bottom;
+                Instance.Table.ScrollToHorizontalOffset(newHorizontal);
+                Instance.Table.ScrollToVerticalOffset(newVertical);
+            }
+        }
+
         public void Render()
         {
-            Section0.RenderTracks(MusicTheory);
-            Section0.RenderTracks(MusicTheory);
-            Section0.RenderTracks(MusicTheory);
-            Section0.RenderTracks(MusicTheory);
+            MainWindow.Lock(() =>
+            {
+                _isrendering = true;
+                Section0.RenderTracks(MusicTheory);
+                Section1.RenderTracks(MusicTheory);
+                Section2.RenderTracks(MusicTheory);
+                Section3.RenderTracks(MusicTheory);
+                MainWindow.UnLock(() => { _isrendering = false; });
+            });
         }
 
         public void Play()
@@ -94,6 +114,14 @@ namespace PianoSimulator.EditPage
         {
             NameInput.BeginTransition(_noselected);
             Keyboard.ClearFocus();
+        }
+
+        private void CreateNew_Click(object sender, MouseButtonEventArgs e)
+        {
+            if (Notification.Select("确定要新建简谱吗,这将清空当前区域！", "⚠ 警告", "是", "否"))
+            {
+                Render();
+            }
         }
     }
 }

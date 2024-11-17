@@ -8,8 +8,8 @@
              Height="360">
     <Border>
         <Grid>
-            <Border ClipToBounds="True" BorderBrush="White" BorderThickness="0.5">
-                <ScrollViewer Margin="0,0,-20,0">
+            <Border ClipToBounds="True" BorderBrush="White" BorderThickness="0.1">
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                     <StackPanel x:Name="Tracks" Orientation="Vertical">
                         <local:TrackVisual x:Name="Track0" Grid.Column="0"/>
                         <local:TrackVisual x:Name="Track1" Grid.Column="1"/>
@@ -20,7 +20,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </Border>
-            
+
         </Grid>
     </Border>
 </local:VisualUnitControlBase>
