@@ -1,4 +1,5 @@
-﻿using PianoSimulator.Generalization;
+﻿using PianoSimulator.EditVisualComponent;
+using PianoSimulator.Generalization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ using System.Windows.Shapes;
 namespace PianoSimulator.EditPage
 {
     [Navigable]
-    public partial class VisualEdit : UserControl, IExecutable
+    public partial class VisualEdit : UserControl, IExecutable, IMusicUnitAggregation
     {
         public VisualEdit()
         {
@@ -38,6 +39,20 @@ namespace PianoSimulator.EditPage
             {
                 x.Duration = 0.2;
             });
+
+        public List<IMusicUnit> Operation
+        {
+            get
+            {
+                List<IMusicUnit> result = new(Editors.Children.Count);
+                foreach (TrackVisual child in Editors.Children)
+                {
+                    result = [.. result, .. child.Value];
+                }
+                return result;
+            }
+        }
+        public string SongName { get; set; } = "default";
 
         public void Play()
         {

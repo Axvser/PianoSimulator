@@ -15,7 +15,7 @@ namespace PianoSimulator.Generalization
         public NormalFormData() { }
         public NormalFormData(IMusicUnitAggregation song)
         {
-            Name = song.Name;
+            Name = song.SongName;
             Operations = song.Operation.Select(x => x.Operation).ToList();
             Durations = song.Operation.Select(x => x.Duration).ToList();
         }
@@ -41,7 +41,7 @@ namespace PianoSimulator.Generalization
             if (Operations.Count == Durations.Count)
             {
                 var song = new Song();
-                song.Name = Name;
+                song.SongName = Name;
                 for (int i = 0; i < Operations.Count; i++)
                 {
                     if (Operations[i].Length == 1)

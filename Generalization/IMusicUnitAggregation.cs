@@ -11,7 +11,14 @@ namespace PianoSimulator.Generalization
     /// </summary>
     public interface IMusicUnitAggregation
     {
-        string Name { get; set; }
-        List<IMusicUnit> Operation { get; set; }
+        /// <summary>
+        /// 曲名
+        /// </summary>
+        string SongName { get; set; }
+
+        /// <summary>
+        /// 操作合集
+        /// </summary>
+        List<IMusicUnit> Operation { get; }
     }
 }

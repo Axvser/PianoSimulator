@@ -4,17 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditVisualComponent"
-             mc:Ignorable="d" 
-             Width="200">
+             mc:Ignorable="d"
+             Height="360">
     <Border>
         <Grid>
             <Border ClipToBounds="True">
                 <ScrollViewer Margin="0,0,-20,0">
-                    <StackPanel Orientation="Vertical">
+                    <StackPanel x:Name="Tracks" Orientation="Vertical">
                         <local:TrackVisual Grid.Column="0"/>
                         <local:TrackVisual Grid.Column="1"/>
                         <local:TrackVisual Grid.Column="2"/>
                         <local:TrackVisual Grid.Column="3"/>
+                        <local:TrackVisual Grid.Column="4"/>
+                        <local:TrackVisual Grid.Column="5"/>
                     </StackPanel>
                 </ScrollViewer>
             </Border>

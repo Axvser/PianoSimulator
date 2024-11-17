@@ -1,4 +1,5 @@
 ﻿using PianoSimulator.BasicService;
+using PianoSimulator.Generalization;
 using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows.Controls;
 
 namespace PianoSimulator.EditVisualComponent
 {
-    public class VisualUnitControlBase : UserControl, IVisualEditUnit
+    public class VisualUnitControlBase : UserControl, IVisualEditUnit, IExecutable
     {
         public int Paragraph
         {

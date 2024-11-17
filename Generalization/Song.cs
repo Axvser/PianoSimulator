@@ -13,7 +13,7 @@ namespace PianoSimulator.Generalization
     public class Song : IMusicUnitAggregation, IExecutable
     {
         public Song() { }
-        public string Name { get; set; } = "default";
+        public string SongName { get; set; } = "default";
         public List<IMusicUnit> Operation { get; set; } = [];
 
         public bool IsRunning { get; private set; } = false;

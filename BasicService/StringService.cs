@@ -67,7 +67,7 @@ namespace PianoSimulator.BasicService
         public static NormalFormData CKS_ParseToNormalFormData(string data, string name = "default")
         {
             Song result = new Song();
-            result.Name = name;
+            result.SongName = name;
             RecursivParse(data, false, 0, result);
             return new NormalFormData(result);
         }

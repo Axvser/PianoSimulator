@@ -27,5 +27,33 @@ namespace PianoSimulator.EditVisualComponent
         {
             InitializeComponent();
         }
+
+        public TrackVisual(MusicTheory musicTheory)
+        {
+            InitializeComponent();
+            RenderCells(musicTheory);
+        }
+
+        public List<IMusicUnit> Value
+        {
+            get
+            {
+                List<IMusicUnit> result = new(Area.Children.Count);
+                return result;
+            }
+        }
+
+        public void RenderCells(MusicTheory theory)
+        {
+            Area.ColumnDefinitions.Clear();
+            for (int i = 0; i < theory.Column; i++)
+            {
+                var definition = new ColumnDefinition();
+                Area.ColumnDefinitions.Add(definition);
+                var cell = new CellVisual();
+                Area.Children.Add(cell);
+                Grid.SetColumn(cell, i);
+            }
+        }
     }
 }

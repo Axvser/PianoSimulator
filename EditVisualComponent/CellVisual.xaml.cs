@@ -23,5 +23,29 @@ namespace PianoSimulator.EditVisualComponent
         {
             InitializeComponent();
         }
+
+        private static TransitionBoard<CellVisual> _selected = Transition.CreateBoardFromType<CellVisual>()
+            .SetProperty(x=>x.BorderBrush,Brushes.Cyan)
+            .SetProperty(x=>x.BorderThickness,new Thickness(1))
+            .SetParams((x) =>
+            {
+                x.Duration = 0.4;
+            });
+        private static TransitionBoard<CellVisual> _noselected = Transition.CreateBoardFromType<CellVisual>()
+            .SetProperty(x => x.BorderBrush, Brushes.White)
+            .SetProperty(x => x.BorderThickness, new Thickness(0))
+            .SetParams((x) =>
+            {
+                x.Duration = 0.2;
+            });
+
+        private void CellBox_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.BeginTransition(_selected);
+        }
+        private void CellBox_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.BeginTransition(_noselected);
+        }
     }
 }

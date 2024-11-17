@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              x:Name="CellBox"
              Height="60"
-             Width="12.5">
+             Width="12.5"
+             MouseEnter="CellBox_MouseEnter" MouseLeave="CellBox_MouseLeave">
     <Grid Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -17,10 +18,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <mn:MButton Text="" WiseHeight="5" WiseWidth="12.5" Grid.Row="0"/>
-        <mn:MButton Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="1"/>
-        <mn:MButton Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="2"/>
-        <mn:MButton Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="3"/>
-        <mn:MButton Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="4"/>
+        <mn:MButton x:Name="Extension" Text="" WiseHeight="5" WiseWidth="12.5" Grid.Row="0" EdgeThickness="0"/>
+        <mn:MButton x:Name="Up" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="1" EdgeThickness="0"/>
+        <mn:MButton x:Name="Key" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="2" EdgeThickness="0"/>
+        <mn:MButton x:Name="Span" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="3" EdgeThickness="0"/>
+        <mn:MButton x:Name="Low" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="4" EdgeThickness="0"/>
     </Grid>
 </local:VisualUnitControlBase>

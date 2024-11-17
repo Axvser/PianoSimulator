@@ -11,7 +11,7 @@ using System.Windows.Threading;
 namespace PianoSimulator.EditPage
 {
     [Navigable]
-    public partial class TxtEdit : UserControl, IExecutable
+    public partial class TxtEdit : UserControl, IExecutable, IMusicUnitAggregation
     {
         public TxtEdit()
         {
@@ -60,6 +60,29 @@ namespace PianoSimulator.EditPage
             }
         }
         public Song? Selected { get; private set; }
+        public List<IMusicUnit> Operation
+        {
+            get
+            {
+                List<IMusicUnit> result = new(Editors.Children.Count);
+                foreach (TxtTrackVisual child in Editors.Children)
+                {
+                    result = [.. result, .. child.Value];
+                }
+                return result;
+            }
+        }
+        public string SongName
+        {
+            get => Selected?.SongName ?? "default";
+            set
+            {
+                if (Selected != null)
+                {
+                    Selected.SongName = value;
+                }
+            }
+        }
 
         public void Play()
         {
@@ -83,7 +106,7 @@ namespace PianoSimulator.EditPage
             if (MainWindow.Instance != null && target != null && !_isRendering)
             {
                 Selected = target;
-                NameInput.Text = target.Name;
+                NameInput.Text = target.SongName;
                 MainWindow.Instance.Actuator = this;
                 MainWindow.Lock(() =>
                 {
@@ -261,10 +284,10 @@ namespace PianoSimulator.EditPage
         {
             if (Selected != null)
             {
-                Selected.Name = Selected.Name == string.Empty || Selected.Name.Contains(' ') || Selected.Name.Contains('.') ? "default" : Selected.Name;
+                Selected.SongName = Selected.SongName == string.Empty || Selected.SongName.Contains(' ') || Selected.SongName.Contains('.') ? "default" : Selected.SongName;
                 try
                 {
-                    Selected.Name.CreatJsonFile(FolderSet.Generalization, Selected.ToNormalFormData());
+                    Selected.SongName.CreatJsonFile(FolderSet.Generalization, Selected.ToNormalFormData());
                     Notification.Message("保存成功 √", "消息", "已知晓");
                 }
                 catch
@@ -304,7 +327,7 @@ namespace PianoSimulator.EditPage
         private void ApplyToMain_Click(object sender, MouseButtonEventArgs e)
         {
             if (Selected == null) { Notification.Message("您无法选择空数据作为游戏内曲目", "⚠ 警告", "已知晓"); return; }
-            if (Notification.Select($"是否将当前游戏内曲目切换为以下歌曲吗 ?\n《 {Selected.Name} 》", "询问", "是", "否"))
+            if (Notification.Select($"是否将当前游戏内曲目切换为以下歌曲吗 ?\n《 {Selected.SongName} 》", "询问", "是", "否"))
             {
                 if (MainWindow.Instance != null)
                 {

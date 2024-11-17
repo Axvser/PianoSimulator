@@ -101,27 +101,18 @@ namespace PianoSimulator.BasicService
             }
         }
 
-        [XmlIgnore]
         [JsonIgnore]
-        public int WholeNote { get { return _basicvalue; } }
-        [XmlIgnore]
+        public int Column { get => (16 / RightNum) * LeftNum; }
         [JsonIgnore]
-        public int HalfNote { get { return _basicvalue / 2; } }
-        [XmlIgnore]
+        public int WholeNote { get => _basicvalue; }
         [JsonIgnore]
-        public int QuarterNote { get { return _basicvalue / 4; } }
-        [XmlIgnore]
+        public int HalfNote { get => _basicvalue / 2; }
         [JsonIgnore]
-        public int EighthNote { get { return _basicvalue / 8; } }
-        [XmlIgnore]
+        public int QuarterNote { get => _basicvalue / 4; }
         [JsonIgnore]
-        public int SixteenthNote { get { return _basicvalue / 16; } }
-        [XmlIgnore]
+        public int EighthNote { get => _basicvalue / 8; }
         [JsonIgnore]
-        public int ThirtySecondNote { get { return _basicvalue / 32; } }
-        [XmlIgnore]
-        [JsonIgnore]
-        public int SixtyFourthNote { get { return _basicvalue / 64; } }
+        public int SixteenthNote { get => _basicvalue / 16; }
         public int FastNote { get; set; } = 100;
 
         private void ReCalculateSets()

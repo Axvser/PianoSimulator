@@ -80,10 +80,6 @@ namespace PianoSimulator.BasicService
                     return musicTheory.EighthNote;
                 case 16:
                     return musicTheory.SixteenthNote;
-                case 32:
-                    return musicTheory.ThirtySecondNote;
-                case 64:
-                    return musicTheory.SixtyFourthNote;
                 default:
                     return musicTheory.FastNote;
             }
