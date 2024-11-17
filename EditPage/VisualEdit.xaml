@@ -24,8 +24,15 @@
             </Grid>
         </Border>
         <Border VerticalAlignment="Top" Height="30" Width="810" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,5,0,0">
-            <TextBlock Text="编辑项 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
+            <TextBlock Text="文件 ▼   " VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
         </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="150" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,92,0,0">
+            <TextBlock Text="单项式 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
+        </Border>
+        <Border VerticalAlignment="Top" Height="30" Width="150" BorderBrush="LightSlateGray" HorizontalAlignment="Right" BorderThickness="0,0,3,0" Margin="0,290,0,0">
+            <TextBlock Text="组合式 ▼" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" Foreground="LightSlateGray" Margin="0,0,25,0"/>
+        </Border>
+        <mn:MButton Text="查看" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,38,0,0" WiseHeight="35" WiseWidth="150"/>
         <Border ClipToBounds="True" BorderBrush="Violet" BorderThickness="3,0.5,3,0.5" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="800" Height="360">
             <ScrollViewer x:Name="Table" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
                 <ScrollViewer.Template>
@@ -35,12 +42,20 @@
                         </Grid>
                     </ControlTemplate>
                 </ScrollViewer.Template>
-                <StackPanel x:Name="Editors">
-                    <cp:TxtSingleVisual Width="800"/>
-                    <cp:TxtSingleVisual Width="800"/>
-                    <cp:TxtSingleVisual Width="800"/>
+                <StackPanel x:Name="Editors" Orientation="Horizontal">
+                    <cp:SectionVisual x:Name="Section0" Order="0"/>
+                    <cp:SectionVisual x:Name="Section1" Order="1"/>
+                    <cp:SectionVisual x:Name="Section2" Order="2"/>
+                    <cp:SectionVisual x:Name="Section3" Order="3"/>
                 </StackPanel>
             </ScrollViewer>
         </Border>
+        <mn:MButton Text="新建" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,123,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="打开" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,163,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="保存" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,203,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="拼接" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,243,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="合并" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,325,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="拆分" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,365,0,0" WiseHeight="35" WiseWidth="150"/>
+        <mn:MButton Text="♪" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="45" WiseWidth="150"/>
     </Grid>
 </UserControl>

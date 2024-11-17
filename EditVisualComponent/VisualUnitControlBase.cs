@@ -35,13 +35,13 @@ namespace PianoSimulator.EditVisualComponent
         }
 
         public static readonly DependencyProperty ParagraphProperty =
-            DependencyProperty.Register("Paragraph", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(0));
+            DependencyProperty.Register("Paragraph", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(-1));
         public static readonly DependencyProperty AudioTrackProperty =
-            DependencyProperty.Register("Track", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(0));
+            DependencyProperty.Register("Track", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(-1));
         public static readonly DependencyProperty OrderProperty =
-            DependencyProperty.Register("Order", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(0));
+            DependencyProperty.Register("Order", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(-1));
         public static readonly DependencyProperty NoteTypeProperty =
-            DependencyProperty.Register("NoteType", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(0));
+            DependencyProperty.Register("NoteType", typeof(int), typeof(VisualUnitControlBase), new PropertyMetadata(-1));
 
         public virtual void Play()
         {

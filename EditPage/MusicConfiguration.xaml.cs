@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PianoSimulator.BasicService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,5 +23,7 @@ namespace PianoSimulator.EditPage
         {
             InitializeComponent();
         }
+
+        public static MusicTheory MusicTheory { get; set; } = new MusicTheory();
     }
 }

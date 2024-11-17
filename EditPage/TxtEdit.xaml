@@ -36,7 +36,7 @@
         <mn:MButton Text="保存" Click="Save_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,294,0,0" WiseHeight="35" WiseWidth="150"/>
         <mn:MButton Text="拼接" Click="Connect_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,334,0,0" WiseHeight="35" WiseWidth="150"/>
         <mn:MButton Text="新建" Click="CreateNew_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,3,0" Margin="810,214,0,0" WiseHeight="35" WiseWidth="150"/>
-        <mn:MButton Text="♪" Click="ApplyToMain_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,374,0,0" WiseHeight="75" WiseWidth="150"/>
+        <mn:MButton Text="♪" Click="ApplyToMain_Click" VerticalAlignment="Top" HorizontalAlignment="Right" EdgeThickness="0,0,3,0" Margin="0,405,0,0" WiseHeight="45" WiseWidth="150"/>
         <Border Width="810" Height="80" ClipToBounds="True" BorderBrush="White" BorderThickness="3,0.5,3,0.5" Margin="0,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
             <ScrollViewer Margin="0,0,-20,0">
                 <StackPanel x:Name="Options">

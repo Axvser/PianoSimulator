@@ -24,5 +24,21 @@ namespace PianoSimulator.EditVisualComponent
         {
             InitializeComponent();
         }
+
+        public SectionVisual(MusicTheory musicTheory)
+        {
+            InitializeComponent();
+            RenderTracks(musicTheory);
+        }
+
+        public void RenderTracks(MusicTheory theory)
+        {
+            Track0.RenderCells(theory);
+            Track1.RenderCells(theory);
+            Track2.RenderCells(theory);
+            Track3.RenderCells(theory);
+            Track4.RenderCells(theory);
+            Track5.RenderCells(theory);
+        }
     }
 }

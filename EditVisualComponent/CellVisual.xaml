@@ -18,10 +18,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <mn:MButton x:Name="Extension" Text="" WiseHeight="5" WiseWidth="12.5" Grid.Row="0" EdgeThickness="0"/>
-        <mn:MButton x:Name="Up" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="1" EdgeThickness="0"/>
-        <mn:MButton x:Name="Key" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="2" EdgeThickness="0"/>
-        <mn:MButton x:Name="Span" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="3" EdgeThickness="0"/>
-        <mn:MButton x:Name="Low" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="4" EdgeThickness="0"/>
+        <mn:MButton x:Name="Extension" IsEdgeOpacityLocked="True" HoverBrush="Transparent" Text="" WiseHeight="5" WiseWidth="12.5" Grid.Row="0" EdgeThickness="0"/>
+        <mn:MButton x:Name="Up" IsEdgeOpacityLocked="True" HoverBrush="Transparent" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="1" EdgeThickness="0"/>
+        <mn:MButton x:Name="Key" IsEdgeOpacityLocked="True" HoverBrush="Transparent" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="2" EdgeThickness="0"/>
+        <mn:MButton x:Name="Span" IsEdgeOpacityLocked="True" HoverBrush="Transparent" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="3" EdgeThickness="0"/>
+        <mn:MButton x:Name="Low" IsEdgeOpacityLocked="True" HoverBrush="Transparent" Text="" WiseHeight="13.75" WiseWidth="12.5" Grid.Row="4" EdgeThickness="0"/>
     </Grid>
 </local:VisualUnitControlBase>

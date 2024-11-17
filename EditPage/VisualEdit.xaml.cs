@@ -1,5 +1,7 @@
-﻿using PianoSimulator.EditVisualComponent;
+﻿using PianoSimulator.BasicService;
+using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
+using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,21 +20,23 @@ using System.Windows.Shapes;
 namespace PianoSimulator.EditPage
 {
     [Navigable]
-    public partial class VisualEdit : UserControl, IExecutable, IMusicUnitAggregation
+    public partial class VisualEdit : UserControl, IExecutable, IMusicUnitAggregation, IVisualEditUnitAggregation
     {
         public VisualEdit()
         {
             InitializeComponent();
+            MusicTheory = MusicConfiguration.MusicTheory;
+            Render();
         }
 
-        private TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
+        private static TransitionBoard<TextBox> _selected = Transition.CreateBoardFromType<TextBox>()
             .SetProperty(x => x.BorderBrush, Brushes.Cyan)
             .SetProperty(x => x.Foreground, Brushes.Cyan)
             .SetParams((x) =>
             {
                 x.Duration = 0.2;
             });
-        private TransitionBoard<TextBox> _noselected = Transition.CreateBoardFromType<TextBox>()
+        private static TransitionBoard<TextBox> _noselected = Transition.CreateBoardFromType<TextBox>()
             .SetProperty(x => x.BorderBrush, Brushes.White)
             .SetProperty(x => x.Foreground, Brushes.White)
             .SetParams((x) =>
@@ -53,6 +57,17 @@ namespace PianoSimulator.EditPage
             }
         }
         public string SongName { get; set; } = "default";
+        public MusicTheory MusicTheory { get; set; } = new MusicTheory();
+
+        public List<List<List<IVisualEditUnit>>> VisualEditUnit => throw new NotImplementedException();
+
+        public void Render()
+        {
+            Section0.RenderTracks(MusicTheory);
+            Section0.RenderTracks(MusicTheory);
+            Section0.RenderTracks(MusicTheory);
+            Section0.RenderTracks(MusicTheory);
+        }
 
         public void Play()
         {
