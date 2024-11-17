@@ -43,6 +43,34 @@ namespace PianoSimulator.BasicService
         };
         public static readonly Dictionary<VirtualKeyCode, char> KeyCodeToChar = CharToKeyCode.ToDictionary(x => x.Value, x => x.Key);
 
+        public static readonly Dictionary<VirtualKeyCode, string> KeyCodeToString = new Dictionary<VirtualKeyCode, string>
+        {
+            {VirtualKeyCode.VK_Q,"1"},
+            {VirtualKeyCode.VK_W,"2"},
+            {VirtualKeyCode.VK_E,"3"},
+            {VirtualKeyCode.VK_R,"4"},
+            {VirtualKeyCode.VK_T,"5"},
+            {VirtualKeyCode.VK_Y,"6"},
+            {VirtualKeyCode.VK_U,"7"},
+
+            {VirtualKeyCode.VK_A,"1"},
+            {VirtualKeyCode.VK_S,"2"},
+            {VirtualKeyCode.VK_D,"3"},
+            {VirtualKeyCode.VK_F,"4"},
+            {VirtualKeyCode.VK_G,"5"},
+            {VirtualKeyCode.VK_H,"6"},
+            {VirtualKeyCode.VK_J,"7"},
+
+            {VirtualKeyCode.VK_Z,"1"},
+            {VirtualKeyCode.VK_X,"2"},
+            {VirtualKeyCode.VK_C,"3"},
+            {VirtualKeyCode.VK_V,"4"},
+            {VirtualKeyCode.VK_B,"5"},
+            {VirtualKeyCode.VK_N,"6"},
+            {VirtualKeyCode.VK_M,"7"},
+        };
+        public static readonly Dictionary<string, VirtualKeyCode> StringToKeyCode = KeyCodeToString.ToDictionary(x => x.Value, x => x.Key);
+
         public static VirtualKeyCode ToVirtualKeyCode(this char source)
         {
             var upper = char.ToUpper(source);
@@ -65,6 +93,14 @@ namespace PianoSimulator.BasicService
             {
                 throw new ArgumentException($"KCS02 按键码 {source} 不受项目支持");
             }
+        }
+        public static string ToString(this VirtualKeyCode source)
+        {
+            if (KeyCodeToString.TryGetValue(source, out var value))
+            {
+                return value;
+            }
+            return string.Empty;
         }
         public static int ToSpan(this int source, MusicTheory musicTheory)
         {

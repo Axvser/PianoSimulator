@@ -2,20 +2,10 @@
 using PianoSimulator.EditVisualComponent;
 using PianoSimulator.Generalization;
 using PianoSimulator.Visualization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PianoSimulator.EditPage
 {
@@ -51,7 +41,7 @@ namespace PianoSimulator.EditPage
             get
             {
                 List<IMusicUnit> result = new(Editors.Children.Count);
-                foreach (TrackVisual child in Editors.Children)
+                foreach (SectionVisual child in Editors.Children)
                 {
                     result = [.. result, .. child.Value];
                 }
@@ -61,18 +51,26 @@ namespace PianoSimulator.EditPage
         public string SongName { get; set; } = "default";
         public MusicTheory MusicTheory { get; set; } = new MusicTheory();
 
-        public List<List<List<IVisualEditUnit>>> VisualEditUnit => throw new NotImplementedException();
+        public IVisualEditUnit[] VisualEditUnit
+        {
+            get
+            {
+                List<IVisualEditUnit> result = [];
+
+
+
+                return [.. result];
+            }
+        }
 
         public static void Scroll(Thickness value)
         {
             if (Instance != null)
             {
                 var horizontal = Instance.Table.HorizontalOffset;
-                var vertical = Instance.Table.VerticalOffset;
                 var newHorizontal = horizontal - value.Left + value.Right;
-                var newVertical = vertical - value.Top + value.Bottom;
                 Instance.Table.ScrollToHorizontalOffset(newHorizontal);
-                Instance.Table.ScrollToVerticalOffset(newVertical);
+                SectionVisual.Selected?.Scroll(value);
             }
         }
 

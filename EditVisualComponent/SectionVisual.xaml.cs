@@ -25,6 +25,29 @@ namespace PianoSimulator.EditVisualComponent
             InitializeComponent();
         }
 
+        private static SectionVisual? _selectedInstance = null;
+        public static SectionVisual? Selected
+        {
+            get => _selectedInstance;
+            set
+            {
+                _selectedInstance = value;
+            }
+        }
+
+        public List<IMusicUnit> Value
+        {
+            get
+            {
+                List<IMusicUnit> result = [];
+                foreach (TrackVisual track in Tracks.Children)
+                {
+                    result = [.. result, .. track.Value];
+                }
+                return result;
+            }
+        }
+
         public SectionVisual(MusicTheory musicTheory)
         {
             InitializeComponent();
@@ -39,6 +62,21 @@ namespace PianoSimulator.EditVisualComponent
             Track3.RenderCells(theory);
             Track4.RenderCells(theory);
             Track5.RenderCells(theory);
+        }
+        public void Scroll(Thickness value)
+        {
+            var vartical = SV.HorizontalOffset;
+            var newHorizontal = vartical - value.Top + value.Bottom;
+            SV.ScrollToVerticalOffset(newHorizontal);
+        }
+
+        private void VisualUnitControlBase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Selected = this;
+        }
+        private void VisualUnitControlBase_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Selected = null;
         }
     }
 }

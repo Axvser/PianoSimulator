@@ -1,4 +1,6 @@
-﻿using PianoSimulator.Generalization;
+﻿using PianoSimulator.BasicService;
+using PianoSimulator.EditPage;
+using PianoSimulator.Generalization;
 using PianoSimulator.Visualization;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WindowsInput.Native;
 
 namespace PianoSimulator.EditVisualComponent
 {
@@ -24,9 +27,10 @@ namespace PianoSimulator.EditVisualComponent
             InitializeComponent();
         }
 
+        private static VirtualKeyCode _key = VirtualKeyCode.SPACE;
         private static TransitionBoard<CellVisual> _selected = Transition.CreateBoardFromType<CellVisual>()
-            .SetProperty(x=>x.BorderBrush,Brushes.Cyan)
-            .SetProperty(x=>x.BorderThickness,new Thickness(1))
+            .SetProperty(x => x.BorderBrush, Brushes.Cyan)
+            .SetProperty(x => x.BorderThickness, new Thickness(1))
             .SetParams((x) =>
             {
                 x.Duration = 0.4;
@@ -39,12 +43,43 @@ namespace PianoSimulator.EditVisualComponent
                 x.Duration = 0.2;
             });
 
+        private static CellVisual? _selectedInstance = null;
+        public static CellVisual? Selected
+        {
+            get => _selectedInstance;
+            set
+            {
+                _selectedInstance = value;
+            }
+        }
+        public VirtualKeyCode NowKey
+        {
+            get => _key;
+            set
+            {
+                _key = value;
+                Key.Text = _key.ToString();
+            }
+        }
+        public IMusicUnit Value
+        {
+            get
+            {
+                var note = new Note();
+                note.Key = _key;
+                note.Span = NoteType.ToSpan(MusicConfiguration.MusicTheory);
+                return note;
+            }
+        }
+
         private void CellBox_MouseEnter(object sender, MouseEventArgs e)
         {
+            Selected = this;
             this.BeginTransition(_selected);
         }
         private void CellBox_MouseLeave(object sender, MouseEventArgs e)
         {
+            Selected = null;
             this.BeginTransition(_noselected);
         }
     }

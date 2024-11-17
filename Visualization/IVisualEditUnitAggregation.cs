@@ -21,6 +21,6 @@ namespace PianoSimulator.Visualization
         /// <summary>
         /// 按照段落-音轨-音符的顺序访问音符单元
         /// </summary>
-        List<List<List<IVisualEditUnit>>> VisualEditUnit { get; }
+        IVisualEditUnit[] VisualEditUnit { get; }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditVisualComponent"
              mc:Ignorable="d" 
-             Height="60">
+             Height="60" MouseEnter="VisualUnitControlBase_MouseEnter" MouseLeave="VisualUnitControlBase_MouseLeave">
     <Grid x:Name="Area">
 
     </Grid>

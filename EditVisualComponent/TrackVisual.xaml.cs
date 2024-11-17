@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,11 +35,24 @@ namespace PianoSimulator.EditVisualComponent
             RenderCells(musicTheory);
         }
 
+        private static TrackVisual? _selectedInstance = null;
+        public static TrackVisual? Selected
+        {
+            get => _selectedInstance;
+            set
+            {
+                _selectedInstance = value;
+            }
+        }
         public List<IMusicUnit> Value
         {
             get
             {
                 List<IMusicUnit> result = new(Area.Children.Count);
+                foreach (CellVisual child in Area.Children)
+                {
+                    result = [.. result, child.Value];
+                }
                 return result;
             }
         }
@@ -54,6 +68,15 @@ namespace PianoSimulator.EditVisualComponent
                 Area.Children.Add(cell);
                 Grid.SetColumn(cell, i);
             }
+        }
+
+        private void VisualUnitControlBase_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Selected = this;
+        }
+        private void VisualUnitControlBase_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Selected = null;
         }
     }
 }

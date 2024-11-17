@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PianoSimulator.EditVisualComponent"
              mc:Ignorable="d"
-             Height="360">
+             Height="360" MouseEnter="VisualUnitControlBase_MouseEnter" MouseLeave="VisualUnitControlBase_MouseLeave">
     <Border>
         <Grid>
             <Border ClipToBounds="True" BorderBrush="White" BorderThickness="0.1">
-                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+                <ScrollViewer x:Name="SV" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
                     <StackPanel x:Name="Tracks" Orientation="Vertical">
                         <local:TrackVisual x:Name="Track0" Grid.Column="0"/>
                         <local:TrackVisual x:Name="Track1" Grid.Column="1"/>

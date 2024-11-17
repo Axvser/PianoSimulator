@@ -13,15 +13,16 @@ namespace PianoSimulator.Visualization
         public VisualFormData(IVisualEditUnitAggregation visualEdit) { Parse(visualEdit); }
 
         public MusicTheory MusicTheory { get; set; } = new MusicTheory();
-        public List<List<List<int>>> Paragraphs { get; set; } = [[[]]];
-        public List<List<List<int>>> AudioTracks { get; set; } = [[[]]];
-        public List<List<List<int>>> Order { get; set; } = [[[]]];
-        public List<List<List<int>>> NoteType { get; set; } = [[[]]];
+        public List<Tuple<int, int, int, int>> Value { get; set; } = [];
 
-        private void Parse(IVisualEditUnitAggregation visualEdit)
+        public void Parse(IVisualEditUnitAggregation visualEdit)
         {
             MusicTheory = visualEdit.MusicTheory;
-
+            Value.Clear();
+            foreach (var unit in visualEdit.VisualEditUnit)
+            {
+                Value.Add(Tuple.Create(unit.Paragraph, unit.Track, unit.Order, unit.NoteType));
+            }
         }
     }
 }
