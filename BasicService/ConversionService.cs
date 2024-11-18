@@ -69,7 +69,6 @@ namespace PianoSimulator.BasicService
             {VirtualKeyCode.VK_N,"6"},
             {VirtualKeyCode.VK_M,"7"},
         };
-        public static readonly Dictionary<string, VirtualKeyCode> StringToKeyCode = KeyCodeToString.ToDictionary(x => x.Value, x => x.Key);
 
         public static VirtualKeyCode ToVirtualKeyCode(this char source)
         {

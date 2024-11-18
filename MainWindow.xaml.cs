@@ -24,6 +24,7 @@ namespace PianoSimulator
         {
             Instance = this;
             InitializeComponent();
+            TransitionParams.DefaultUIPriority = System.Windows.Threading.DispatcherPriority.Render;
         }
 
         private IExecutable _actuator = new Song();

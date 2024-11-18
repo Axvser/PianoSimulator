@@ -139,6 +139,7 @@ namespace PianoSimulator.EditPage
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
+                MessageBox.Show("开始");
                 Editors.Children.Clear();
                 _isRendering = true;
             });
@@ -172,15 +173,16 @@ namespace PianoSimulator.EditPage
             }
             foreach (var tack in tracks)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                Application.Current.Dispatcher.BeginInvoke(() =>
                 {
                     Editors.Children.Add(tack);
+                    MessageBox.Show("添加Track");
                 }, DispatcherPriority.Render);
             }
             Application.Current.Dispatcher.Invoke(() =>
             {
                 MainWindow.UnLock(() => { _isRendering = false; });
-            }, DispatcherPriority.Background);
+            });
         }
 
         public static void Scroll(Thickness value)
