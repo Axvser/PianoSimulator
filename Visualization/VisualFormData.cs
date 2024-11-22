@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PianoSimulator.Visualization
 {
-    internal class VisualFormData
+    public class VisualFormData
     {
         public VisualFormData() { }
         public VisualFormData(IVisualEditUnitAggregation visualEdit) { Parse(visualEdit); }
@@ -15,7 +15,7 @@ namespace PianoSimulator.Visualization
         public MusicTheory MusicTheory { get; set; } = new MusicTheory();
         public List<Tuple<int, int, int, int>> Value { get; set; } = [];
 
-        public void Parse(IVisualEditUnitAggregation visualEdit)
+        private void Parse(IVisualEditUnitAggregation visualEdit)
         {
             MusicTheory = visualEdit.MusicTheory;
             Value.Clear();

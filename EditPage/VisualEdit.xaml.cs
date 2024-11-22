@@ -78,6 +78,7 @@ namespace PianoSimulator.EditPage
         {
             MainWindow.Lock(() =>
             {
+                StateMachine.MachinePool.Clear();
                 _isrendering = true;
                 Section0.RenderTracks(MusicTheory);
                 Section1.RenderTracks(MusicTheory);
